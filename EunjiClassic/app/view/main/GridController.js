@@ -4,8 +4,19 @@ Ext.define('EunjiClassic.view.main.GridController',{
     alias: 'controller.projectgrid',
 
     onItemSelected: function(grid, record, index){
+        // debugger;
         var store = this.getViewModel().get('gridstore');
-        store.remove(record);
+        console.log(grid);
+        console.log(record);
+
+        var title = record.getData().title;
+        var createProjectWindow = Ext.create("createProject")
+        createProjectWindow.down('textfield').setValue(title);
+        createProjectWindow.show();
+        var flag = "modify";
+        
+
+        // store.remove(record);
     },
 
     createProjectBtnClick : function(btn){

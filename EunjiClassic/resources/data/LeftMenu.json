@@ -1,0 +1,42 @@
+{
+  "children":[
+    {
+      "name": "사용자",
+      "url": "",
+      "leaf": false,
+      "children":[{
+        "name": "사용자 조회",
+        "url": "EunjiClassic.view.user.UserShow",
+        "leaf": true
+      },{
+        "name": "사용자 목록조회",
+        "url": "EunjiClassic.view.user.UserShowList",
+        "leaf": true
+      },{
+        "name": "사용자 등록",
+        "url": "EunjiClassic.view.user.UserReg",
+        "leaf": true
+      },{
+        "name": "사용자 변경",
+        "url": "EunjiClassic.view.user.UserUpd",
+        "leaf": true
+      }]
+    },{
+      "name": "메뉴",
+      "url": "",
+      "leaf": false,
+      "children": [{
+        "name": "메뉴1",
+        "url": "...",
+        "leaf": true
+      },{
+        "name": "메뉴2",
+        "url": "...",
+        "leaf": true
+      },{
+        "name": "메뉴3",
+        "url": "...",
+        "leaf": true
+      }]
+    }]
+}

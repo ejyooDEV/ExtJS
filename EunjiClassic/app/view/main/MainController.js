@@ -20,5 +20,10 @@ Ext.define('EunjiClassic.view.main.MainController', {
         this.getView().destroy();
 
         Ext.widget('login');
-    }
+    },
+
+    ExtWidgetTest: function(btn){
+        var createProjectWindow = Ext.create("treewindow");
+        createProjectWindow.show();
+    } 
 });

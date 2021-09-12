@@ -14,5 +14,5 @@ Ext.application({
     ],
 
     // The name of the initial view to create.
-    mainView: 'ExtJS6Class.view.main.Main'
+    mainView: 'ExtJS6Class.view.main.classTest.ClassSingleton'
 });

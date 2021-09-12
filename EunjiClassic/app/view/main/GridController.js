@@ -13,9 +13,6 @@ Ext.define('EunjiClassic.view.main.GridController',{
         var createProjectWindow = Ext.create("createProject")
         createProjectWindow.down('textfield').setValue(title);
         createProjectWindow.show();
-        var flag = "modify";
-        
-
         // store.remove(record);
     },
 

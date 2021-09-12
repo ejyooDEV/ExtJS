@@ -49,6 +49,12 @@ Ext.define('EunjiClassic.view.main.Main', {
                             iconCls: 'fas fa-user',
                             handler: 'onClickButton'
                         },
+                        {
+                            xtype: 'button',
+                            iconCls: 'fas fa-user',
+                            text: '트리 테스트',
+                            handler: 'ExtWidgetTest'
+                        },
                         '유은지'
                     ]
                 },

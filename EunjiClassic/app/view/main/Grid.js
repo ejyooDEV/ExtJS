@@ -24,11 +24,36 @@ Ext.define('EunjiClassic.view.main.Grid', {
         }]
     },
     columns: [
-        { text: 'Title',  align : 'center', flex : 2, dataIndex: 'title' },
-        { text: 'StartDate',  align : 'center', width: 90, dataIndex: 'startDate' },
+        {
+            xtype: 'actioncolumn',
+            width: 25,
+            items:[{
+                iconCls: 'fas fa-info-circle',
+                tooltip: 'information',
+                // handler: 'onInformationIconClick' //action column으로 대체함.
+            }]
+        },
+        { text: 'Title',  align : 'center', flex : 2, dataIndex: 'title',
+            editor:{
+                xtype: 'textfield',
+                allowBlank: false
+            }},
+        { text: 'StartDate',  align : 'center', width: 90, dataIndex: 'startDate',
+            editor:{
+                xtype: 'datefield',
+                allowBlank: false
+            }},
         { text: 'EndDate',  style : 'text-align:center', width: 90, dataIndex: 'endDate' },
-        { text: 'Status',  style : 'text-align:center', flex : 1, dataIndex: 'status' },
-        { text: 'Description',  style : 'text-align:center', flex : 1, dataIndex: 'description' },
+        { text: 'Status',  style : 'text-align:center', flex : 1, dataIndex: 'status',
+            editor:{
+                xtype: 'combobox',
+                allowBlank: false
+            }},
+        { text: 'Description',  style : 'text-align:center', flex : 1, dataIndex: 'description',
+            editor:{
+                xtype: 'textareafield',
+                allowBlank: false
+            }},
         { text: 'MenuTemplate',  style : 'text-align:center', flex : 1, dataIndex: 'menuTemplate' },
         { text: 'Manager',  style : 'text-align:center', flex : 1, dataIndex: 'manager' },
         { text: 'Period',  style : 'text-align:center', flex : 1, dataIndex: 'period' },
@@ -40,9 +65,14 @@ Ext.define('EunjiClassic.view.main.Grid', {
     },
 
     listeners: {
-        rowdblclick: 'onItemdbClick'
+        // rowdblclick: 'onItemdbClick',
+        edit: 'onEditRow'
     },
     columnLines: true,
-    // scrollable: true,
-    // autoScroll: true
+    
+    plugins: {
+        ptype: 'rowediting',
+        clicksToEdit: 2
+    },
+    selModel: 'rowmodel',
 });

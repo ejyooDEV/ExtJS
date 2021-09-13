@@ -6,9 +6,9 @@ Ext.define('EunjiClassic.view.main.Grid', {
     xtype: 'mainprojectlistgrid',
 
     controller: 'projectgrid',
-    requires: [
-        'EunjiClassic.store.ProjectList' // store define data
-    ],
+    // requires: [
+    //     'EunjiClassic.store.ProjectList' // store define data
+    // ],
     
     bind: {
         store: '{gridstore}', // MainModel.js 내 bind data
@@ -23,12 +23,16 @@ Ext.define('EunjiClassic.view.main.Grid', {
             handler : 'createProjectBtnClick'
         }]
     },
-    
     columns: [
-        { text: 'title',  align : 'center', flex : 3, dataIndex: 'title' },
-        { text: 'Manager',  align : 'center', flex : 3, dataIndex: 'manager' },
-        { text: 'Period',  style : 'text-align:center', flex : 3, dataIndex: 'period' },
-        { text: 'Issue',  style : 'text-align:center', flex : 3, dataIndex: 'issue' },
+        { text: 'Title',  align : 'center', flex : 2, dataIndex: 'title' },
+        { text: 'StartDate',  align : 'center', width: 90, dataIndex: 'startDate' },
+        { text: 'EndDate',  style : 'text-align:center', width: 90, dataIndex: 'endDate' },
+        { text: 'Status',  style : 'text-align:center', flex : 1, dataIndex: 'status' },
+        { text: 'Description',  style : 'text-align:center', flex : 1, dataIndex: 'description' },
+        { text: 'MenuTemplate',  style : 'text-align:center', flex : 1, dataIndex: 'menuTemplate' },
+        { text: 'Manager',  style : 'text-align:center', flex : 1, dataIndex: 'manager' },
+        { text: 'Period',  style : 'text-align:center', flex : 1, dataIndex: 'period' },
+        { text: 'Issue',  style : 'text-align:center', flex : 1, dataIndex: 'issue' },
     ],
 
     bbar : {
@@ -38,5 +42,8 @@ Ext.define('EunjiClassic.view.main.Grid', {
 
     listeners: {
         select: 'onItemSelected'
-    }
+    },
+    columnLines: true,
+    // scrollable: true,
+    // autoScroll: true
 });

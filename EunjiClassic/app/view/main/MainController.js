@@ -3,10 +3,19 @@ Ext.define('EunjiClassic.view.main.MainController', {
 
     alias: 'controller.main',
 
+    onButtonAfterrender: function(component) {
+        var data = this.getViewModel().get('Ongoing');
+        this.getViewModel().getStore('gridstore').add(data);
+    },
+
     onButtonChange: function(component, button, isPressed, eOpts )  {
         // debugger;
         var btn = button.getText();
-        var data = this.getViewModel().get(btn.toLowerCase());
+        var data = this.getViewModel().get(btn);
+        var _projectType = this.getViewModel().get('projectType');        
+        var _gridstore = this.getViewModel().getStore('gridstore');
+
+        this.getViewModel().set(_projectType,_gridstore.getRange());
 
         this.getViewModel().set('projectType',btn);
         this.getViewModel().getStore('gridstore').removeAll();
@@ -16,9 +25,7 @@ Ext.define('EunjiClassic.view.main.MainController', {
     onClickButton: function(btn){
         // debugger;
         localStorage.removeItem('TutorialLoggedIn');
-
         this.getView().destroy();
-
         Ext.widget('login');
     },
 

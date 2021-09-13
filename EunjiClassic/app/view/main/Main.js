@@ -61,7 +61,8 @@ Ext.define('EunjiClassic.view.main.Main', {
                 {
                     xtype: 'segmentedbutton',
                     listeners: {
-                        toggle: 'onButtonChange'
+                        toggle: 'onButtonChange',
+                        afterrender: 'onButtonAfterrender'
                     },
                     items: [
                         {

@@ -5,18 +5,34 @@ Ext.define('EunjiClassic.view.main.GridController',{
 
     onItemSelected: function(grid, record, index){
         // debugger;
-        var store = this.getViewModel().get('gridstore');
-        console.log(grid);
-        console.log(record);
+        var title           = record.getData().title;
+        var startDate       = record.getData().startDate;
+        var endDate         = record.getData().endDate;
+        var recordStatus    = record.getData().status;
+        console.log(recordStatus);
+        var description     = record.getData().description;
+        var menuTemplate    = record.getData().menuTemplate;
 
-        var title = record.getData().title;
-        var createProjectWindow = Ext.create("createProject")
-        createProjectWindow.down('textfield').setValue(title);
+        // var store = this.getViewModel().get('gridstore');
+        var createProjectWindow = Ext.create("createProject",{
+            mode: "read",
+            record: record
+        });
+
+        createProjectWindow.setTitle(title+" Project");
+        createProjectWindow.down('textfield[name=title]').setValue(title);
+        createProjectWindow.down('datefield[name=startDate]').setValue(startDate);
+        createProjectWindow.down('datefield[name=endDate]').setValue(endDate);
+        createProjectWindow.down('combobox[name=status]').setValue(recordStatus);
+        createProjectWindow.down('combobox[name=menuTemplate]').setValue(menuTemplate);
+        createProjectWindow.down('textareafield[name=description]').setValue(description);
         createProjectWindow.show();
-        // store.remove(record);
     },
 
     createProjectBtnClick : function(btn){
-        Ext.create("createProject").show(); // window.js의 alias
+        // debugger;
+        Ext.create("createProject",{
+            mode: "create"
+        }).show(); // window.js의 alias
     },
 });

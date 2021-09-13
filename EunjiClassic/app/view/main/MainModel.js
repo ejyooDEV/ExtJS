@@ -8,38 +8,34 @@ Ext.define('EunjiClassic.view.main.MainModel', {
 
         loremIpsum: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 
-        projectType: 'Ongoing',
+        projectType: 'Ongoing', // 초기 TITLE 세팅 용
+        Ongoing: [
+            { title:'ongoing1', startDate: '2021-09-13', endDate: '2021-09-14', status: "Ongoing", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'ongoing2', startDate: '2021-09-13', endDate: '2021-09-14', status: "Ongoing", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'ongoing3', startDate: '2021-09-13', endDate: '2021-09-14', status: "Ongoing", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+        ],
+        Planning: [
+            { title:'planning1', startDate: '2021-09-13', endDate: '2021-09-14', status: "Planning", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'planning1', startDate: '2021-09-13', endDate: '2021-09-14', status: "Planning", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'planning1', startDate: '2021-09-13', endDate: '2021-09-14', status: "Planning", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
 
-        ongoing: [
-            { title: 'ongoing', manager: "jeanluc.picard", period: "1111", issue: "Jean" },
-            { title: 'ongoing', manager: "worf.moghsson",  period: "2222", issue: "Worf" },
-            { title: 'ongoing', manager: "deanna.troi",    period: "3333", issue: "Deanna" },
-            { title: 'ongoing', manager: "mr.data",        period: "4444", issue: "Data" },
         ],
-        planning: [
-            { title: 'planning', manager: "jeanluc.picard", period: "1111", issue: "Jean" },
-            { title: 'planning', manager: "worf.moghsson",  period: "2222", issue: "Worf" },
-            { title: 'planning', manager: "deanna.troi",    period: "3333", issue: "Deanna" },
-            { title: 'planning', manager: "mr.data",        period: "4444", issue: "Data" },
+        Postponed: [
+            { title:'postponed1', startDate: '2021-09-13', endDate: '2021-09-14', status: "Postponed", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'postponed2', startDate: '2021-09-13', endDate: '2021-09-14', status: "Postponed", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'postponed3', startDate: '2021-09-13', endDate: '2021-09-14', status: "Postponed", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
         ],
-        postponed: [
-            { title: 'postponed', manager: "jeanluc.picard", period: "1111", issue: "Jean" },
-            { title: 'postponed', manager: "worf.moghsson",  period: "2222", issue: "Worf" },
-            { title: 'postponed', manager: "deanna.troi",    period: "3333", issue: "Deanna" },
-            { title: 'postponed', manager: "mr.data",        period: "4444", issue: "Data" },
-        ],
-        finished: [
-            { title: 'finished', manager: "jeanluc.picard", period: "1111", issue: "Jean" },
-            { title: 'finished', manager: "worf.moghsson",  period: "2222", issue: "Worf" },
-            { title: 'finished', manager: "deanna.troi",    period: "3333", issue: "Deanna" },
-            { title: 'finished', manager: "mr.data",        period: "4444", issue: "Data" },
+        Finished: [
+            { title:'finished1', startDate: '2021-09-13', endDate: '2021-09-14', status: "Finished", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'finished2', startDate: '2021-09-13', endDate: '2021-09-14', status: "Finished", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
+            { title:'finished3', startDate: '2021-09-13', endDate: '2021-09-14', status: "Finished", description: "DescriptionData", menuTemplate: "SILKROAD Template", manager: "managerData", period: "periodData", issue: "issueData" },
         ]
     
     },
 
     stores: {
         gridstore: {
-            type:'project' //store : ProjectList.js 의 alias
+            // type:'project' //store : ProjectList.js 의 alias 
         }
     }
 });

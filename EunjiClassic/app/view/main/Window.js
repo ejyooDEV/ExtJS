@@ -20,25 +20,25 @@ Ext.define('EunjiClassic.view.main.Window', {
                 {
                     xtype: 'textfield',
                     name: 'title',
-                    fieldLabel: 'Name',
+                    fieldLabel: 'Title',
                     allowBlank: false
                 }, {
                     xtype: 'datefield',
                     anchor: '100%',
-                    name: 'startdate',
-                    fieldLabel: 'Start Date',
-                    format: 'Y m d',
+                    name: 'startDate',
+                    fieldLabel: 'StartDate',
+                    format: 'Y-m-d',
                     value: new Date()  // defaults to today
                 }, {
                     xtype: 'datefield',
                     anchor: '100%',
-                    name: 'enddate',
-                    fieldLabel: 'End Date',
-                    format: 'Y m d',
+                    name: 'endDate',
+                    fieldLabel: 'EndDate',
+                    format: 'Y-m-d',
                     value: new Date()  // defaults to today
                 }, {
                     xtype: 'combobox',
-                    store: ['test1', 'test2'],
+                    store: ['Ongoing', 'Planning', 'Postponed', 'Finished'],
                     name: 'status',
                     fieldLabel: 'Status'
                 }, {
@@ -49,14 +49,12 @@ Ext.define('EunjiClassic.view.main.Window', {
                     anchor: '100%'
                 }, {
                     xtype: 'combobox',
-                    store: {
-                        type: 'templatecombobox'
-                    },
+                    store: ['SILKROAD Template','DOOSAN'],
                     queryMode: 'local',
-                    displayField: 'Menu Template',
+                    displayField: 'MenuTemplate',
                     valueField: 'data',
-                    name: 'Menu Template',
-                    fieldLabel: 'Menu Template'
+                    name: 'menuTemplate',
+                    fieldLabel: 'MenuTemplate'
                 }, {
                     xtype: 'panel',
                     layout: 'hbox',

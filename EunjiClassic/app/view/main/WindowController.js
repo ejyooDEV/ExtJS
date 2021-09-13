@@ -9,7 +9,7 @@ Ext.define('EunjiClassic.view.main.WindowController',{
         var form    = win.down('form');
         var store   = this.getViewModel().getStore('gridstore');
         var windowFlag = win.mode;
-        // var recordStatus = win.record.getData().status;
+        var record = win.record;
 
         if(windowFlag == 'read'){
             win.record.set('title',form.getValues().title);
@@ -18,15 +18,19 @@ Ext.define('EunjiClassic.view.main.WindowController',{
             win.record.set('status',form.getValues().status);
             win.record.set('description',form.getValues().description);
             win.record.set('menuTemplate',form.getValues().menuTemplate);
+
+            record.save();
         }else if(windowFlag == 'create'){
             store.add(form.getValues());
         }else{
             console.log("정의되지 않은 windowFlag");
         }
         win.close();
+        
     },
 
     onCloseClick : function(btn){
+        var win     = btn.up('window');
         win.close();
     }
 });

@@ -1,7 +1,6 @@
-// Ext.define('EunjiClassic.model.ProjectList', {
-//     extend: 'EunjiClassic.model.Base',
-
-//     fields: [
-//         'Title', 'StartDate', 'EndDate', 'Status', 'Description', 'MenuTemplate', 'Manager', 'Period', 'Issue'
-//     ]
-// });
+Ext.define('EunjiClassic.model.ProjectList', {
+    extend: 'EunjiClassic.model.Base',
+    fields: [
+        'title', 'startDate', 'endDate', 'status', 'description', 'menuTemplate', 'manager', 'period', 'issue'
+    ]
+});

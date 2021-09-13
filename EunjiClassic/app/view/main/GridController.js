@@ -2,8 +2,8 @@ Ext.define('EunjiClassic.view.main.GridController',{
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.projectgrid',
-
-    onItemSelected: function(grid, record, index){
+// rowdblclick ( this, record, element, rowIndex, e, eOpts ) 
+    onItemdbClick: function(grid, record, element, rowIndex, e, eOpts){
         // debugger;
         var title           = record.getData().title;
         var startDate       = record.getData().startDate;

@@ -36,12 +36,11 @@ Ext.define('EunjiClassic.view.main.Grid', {
     ],
 
     bbar : {
-        xtype : 'pagingtoolbar',
-        displayInfo: true
+        xtype : 'pagingtoolbar'
     },
 
     listeners: {
-        select: 'onItemSelected'
+        rowdblclick: 'onItemdbClick'
     },
     columnLines: true,
     // scrollable: true,

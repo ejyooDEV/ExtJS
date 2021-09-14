@@ -4,21 +4,15 @@ Ext.define('EunjiClassic.view.main.WindowController',{
     alias : 'controller.projectWindow',
 
     onAddClick : function(btn){
-        // debugger
         var win     = btn.up('window');
         var form    = win.down('form');
         var store   = this.getViewModel().getStore('gridstore');
         var windowFlag = win.mode;
         var record = win.record;
-
         if(windowFlag == 'read'){
-            win.record.set('title',form.getValues().title);
-            win.record.set('startDate',form.getValues().startDate);
-            win.record.set('endDate',form.getValues().endDate);
-            win.record.set('status',form.getValues().status);
-            win.record.set('description',form.getValues().description);
-            win.record.set('menuTemplate',form.getValues().menuTemplate);
-
+            debugger;
+            record.set(form.getValues());
+            debugger;
             record.save();
         }else if(windowFlag == 'create'){
             store.add(form.getValues());

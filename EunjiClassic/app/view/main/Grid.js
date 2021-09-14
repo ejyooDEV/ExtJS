@@ -9,70 +9,93 @@ Ext.define('EunjiClassic.view.main.Grid', {
     // requires: [
     //     'EunjiClassic.store.ProjectList' // store define data
     // ],
-    
+
     bind: {
         store: '{gridstore}', // MainModel.js 내 bind data
-        title:'{projectType} Project', // MainModel.js 내 bind data
+        title: '{projectType} Project', // MainModel.js 내 bind data
     },
 
-    header : {
-        itemPosition : 1,
-        items : [{
-            xtype : 'button',
-            text : 'Create Project',
-            handler : 'createProjectBtnClick'
+    header: {
+        itemPosition: 1,
+        items: [{
+            xtype: 'button',
+            text: 'Create Project',
+            handler: 'createProjectBtnClick'
         }]
     },
     columns: [
         {
             xtype: 'actioncolumn',
             width: 25,
-            items:[{
+            items: [{
                 iconCls: 'fas fa-info-circle',
                 tooltip: 'information',
-                // handler: 'onInformationIconClick' //action column으로 대체함.
+                handler: 'onInformationIconClick'
             }]
         },
-        { text: 'Title',  align : 'center', flex : 2, dataIndex: 'title',
-            editor:{
+        {
+            text: 'Title', align: 'center', flex: 2, dataIndex: 'title',
+            editor: {
                 xtype: 'textfield',
-                allowBlank: false
-            }},
-        { text: 'StartDate',  align : 'center', width: 90, dataIndex: 'startDate',
-            editor:{
+                allowBlank: false,
+                completeOnEnter: false
+            }
+        },
+        {
+            text: 'startDate', align: 'center', flex: 2, dataIndex: 'startDate',
+            editor: {
                 xtype: 'datefield',
-                allowBlank: false
-            }},
-        { text: 'EndDate',  style : 'text-align:center', width: 90, dataIndex: 'endDate' },
-        { text: 'Status',  style : 'text-align:center', flex : 1, dataIndex: 'status',
-            editor:{
+            }
+        },
+        {
+            text: 'Period',
+            style: 'text-align:center',
+            flex: 1,
+            dataIndex: 'period',
+            renderer: 'getPeriodRender'
+        },
+        {
+            text: 'Status', style: 'text-align:center', flex: 1, dataIndex: 'status',
+            editor: {
                 xtype: 'combobox',
-                allowBlank: false
-            }},
-        { text: 'Description',  style : 'text-align:center', flex : 1, dataIndex: 'description',
-            editor:{
+                allowBlank: false,
+                completeOnEnter: false,
+                store: ['Ongoing', 'Planning', 'Postponed', 'Finished']
+            }
+        },
+        {
+            text: 'Description', style: 'text-align:center', flex: 1, dataIndex: 'description',
+            editor: {
                 xtype: 'textareafield',
-                allowBlank: false
-            }},
-        { text: 'MenuTemplate',  style : 'text-align:center', flex : 1, dataIndex: 'menuTemplate' },
-        { text: 'Manager',  style : 'text-align:center', flex : 1, dataIndex: 'manager' },
-        { text: 'Period',  style : 'text-align:center', flex : 1, dataIndex: 'period' },
-        { text: 'Issue',  style : 'text-align:center', flex : 1, dataIndex: 'issue' },
+                allowBlank: false,
+                completeOnEnter: false
+            }
+        },
+        { text: 'MenuTemplate', style: 'text-align:center', flex: 1, dataIndex: 'menuTemplate', hidden: true },
+        { text: 'Manager', style: 'text-align:center', flex: 1, dataIndex: 'manager', hidden: true },
+        { text: 'Issue', style: 'text-align:center', flex: 1, dataIndex: 'issue', hidden: true },
     ],
 
-    bbar : {
-        xtype : 'pagingtoolbar'
-    },
+    bbar: [
+        '->',
+        {
+            xtype: 'pagingtoolbar',
+            bind: {
+                store: '{gridstore}', // MainModel.js 내 bind data
+            },
+        },
+        '->'
+    ],
 
     listeners: {
         // rowdblclick: 'onItemdbClick',
         edit: 'onEditRow'
     },
     columnLines: true,
-    
+
     plugins: {
-        ptype: 'rowediting',
+        ptype: 'cellediting',
         clicksToEdit: 2
     },
-    selModel: 'rowmodel',
+    selModel: 'cellmodel',
 });

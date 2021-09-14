@@ -1,74 +1,57 @@
+function dateFormat(date){
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+
+    month = month >= 10 ? month : '0' + month;
+    day = day >= 10 ? day : '0' + day;
+    hour = hour >= 10 ? hour : '0' + hour;
+    minute = minute >= 10 ? minute : '0' + minute;
+    second = second >= 10 ? second : '0' + second;
+
+    return date.getFullYear() + '-' + month + '-' + day; 
+ }
+
 Ext.define('EunjiClassic.view.main.GridController',{
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.projectgrid',
-    // onItemdbClick: function(grid, record, element, rowIndex, e, eOpts){
-    //     // debugger;
-    //     var title           = record.getData().title;
-    //     var startDate       = record.getData().startDate;
-    //     var endDate         = record.getData().endDate;
-    //     var recordStatus    = record.getData().status;
-    //     var description     = record.getData().description;
-    //     var menuTemplate    = record.getData().menuTemplate;
-
-    //     var createProjectWindow = Ext.create("createProject",{
-    //         mode: "read",
-    //         record: record
-    //     });
-
-    //     createProjectWindow.setTitle(title+" Project");
-    //     createProjectWindow.down('textfield[name=title]').setValue(title);
-    //     createProjectWindow.down('datefield[name=startDate]').setValue(startDate);
-    //     createProjectWindow.down('datefield[name=endDate]').setValue(endDate);
-    //     createProjectWindow.down('combobox[name=status]').setValue(recordStatus);
-    //     createProjectWindow.down('combobox[name=menuTemplate]').setValue(menuTemplate);
-    //     createProjectWindow.down('textareafield[name=description]').setValue(description);
-    //     createProjectWindow.show();
-    // },
 
     onInformationIconClick: function(grid, rowIndex, colIndex){
-        var rec             = grid.getStore().getAt(rowIndex);
-        var title           = rec.getData().title;
-        var startDate       = rec.getData().startDate;
-        var endDate         = rec.getData().endDate;
-        var recordStatus    = rec.getData().status;
-        var description     = rec.getData().description;
-        var menuTemplate    = rec.getData().menuTemplate;
+        var record             = grid.getStore().getAt(rowIndex);
+        var title           = record.getData().title;
 
         var createProjectWindow = Ext.create("createProject",{
             mode: "read",
-            record: rec
+            record: record
         });
-
+        
         createProjectWindow.setTitle(title+" Project");
-        createProjectWindow.down('textfield[name=title]').setValue(title);
-        createProjectWindow.down('datefield[name=startDate]').setValue(startDate);
-        createProjectWindow.down('datefield[name=endDate]').setValue(endDate);
-        createProjectWindow.down('combobox[name=status]').setValue(recordStatus);
-        createProjectWindow.down('combobox[name=menuTemplate]').setValue(menuTemplate);
-        createProjectWindow.down('textareafield[name=description]').setValue(description);
+        createProjectWindow.down('form').loadRecord(record);
         createProjectWindow.show();
-
-        alert("Information " + rec.get('title'));
+        // debugger;
     },
 
     createProjectBtnClick : function(btn){
-        // debugger;
         Ext.create("createProject",{
             mode: "create"
         }).show(); // window.js의 alias
     },
 
     onEditRow: function(editor, context, e){
-        var _projectType = this.getViewModel().get('projectType');
-        var _colIdx = context.colIdx;
+        var _record = context.record;
+        var _newValues = context.value; // json 객체
 
-        var modelData = this.getViewModel().get(_projectType)[_colIdx-1];
-        console.log(modelData);
-        
-        console.log("contextNewValueTitle : " + context.newValues.title);
-        console.log("modelDataTitle(Before) : " + modelData.title);
-        modelData.title = context.newValues.title;
-        console.log("modelDataTitle(After) : " + modelData.title);
+        // _record.set(_newValues);
+        // _record.data.startDate = Ext.util.Format.date(_newValues,'Y-m-d');
+        _record.save();
+    },
+
+    getPeriodRender: function(value, cell, record, dataIndex, cellIndex, store, gridview){
+        // debugger;
+        var period = record.data.startDate + "~" + record.data.endDate;
+        return period; // 변수는 크게 의미 없음
     }
 });

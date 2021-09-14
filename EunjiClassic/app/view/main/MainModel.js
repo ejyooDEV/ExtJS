@@ -35,6 +35,7 @@ Ext.define('EunjiClassic.view.main.MainModel', {
 
     stores: {
         gridstore: {
+            xtype: 'store'
             // type:'project' //store : ProjectList.js 의 alias 
         }
     }

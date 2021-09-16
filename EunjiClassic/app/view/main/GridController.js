@@ -1,19 +1,3 @@
-function dateFormat(date){
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let hour = date.getHours();
-    let minute = date.getMinutes();
-    let second = date.getSeconds();
-
-    month = month >= 10 ? month : '0' + month;
-    day = day >= 10 ? day : '0' + day;
-    hour = hour >= 10 ? hour : '0' + hour;
-    minute = minute >= 10 ? minute : '0' + minute;
-    second = second >= 10 ? second : '0' + second;
-
-    return date.getFullYear() + '-' + month + '-' + day; 
- }
-
 Ext.define('EunjiClassic.view.main.GridController',{
     extend: 'Ext.app.ViewController',
 
@@ -42,11 +26,13 @@ Ext.define('EunjiClassic.view.main.GridController',{
 
     onEditRow: function(editor, context, e){
         var _record = context.record;
-        var _newValues = context.value; // json 객체
+        var _newValues
 
-        // _record.set(_newValues);
-        // _record.data.startDate = Ext.util.Format.date(_newValues,'Y-m-d');
-        _record.save();
+        if(context.field == 'startDate'){
+            console.log("if문");
+            _record.set('startDate',Ext.util.Format.date(context.value,'Y-m-d'));
+        }
+        _record.store.save();
     },
 
     getPeriodRender: function(value, cell, record, dataIndex, cellIndex, store, gridview){

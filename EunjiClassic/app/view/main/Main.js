@@ -86,7 +86,7 @@ Ext.define('EunjiClassic.view.main.Main', {
             xtype: 'mainprojectlistgrid',
             border: true,
             region: 'center',
-            flex:2
+            flex:4
         },
         {
             xtype: 'panel',
@@ -106,7 +106,7 @@ Ext.define('EunjiClassic.view.main.Main', {
                     xtype: 'panel',
                     border: true,
                     region: 'west',
-                    flex:1,
+                    flex:2,
                     title: 'board'
                 },
                 {

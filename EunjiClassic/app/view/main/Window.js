@@ -7,8 +7,8 @@ Ext.define('EunjiClassic.view.main.Window', {
         'Ext.window.MessageBox',
         'EunjiClassic.view.main.WindowController'
     ],
+    
     controller: 'projectWindow',
-
     width: 800,
     height: 500,
     title: 'New Project',
@@ -16,6 +16,9 @@ Ext.define('EunjiClassic.view.main.Window', {
     items: [
         {
             xtype: 'form',
+            listeners: {
+                afterrender: 'onFormAfterrender'
+            },
             items: [
                 {
                     xtype: 'textfield',
@@ -27,6 +30,7 @@ Ext.define('EunjiClassic.view.main.Window', {
                     anchor: '100%',
                     name: 'startDate',
                     fieldLabel: 'StartDate',
+                    submitFormat: 'Y-m-d',
                     format: 'Y-m-d',
                     value: new Date()  // defaults to today
                 }, {
@@ -40,6 +44,7 @@ Ext.define('EunjiClassic.view.main.Window', {
                     xtype: 'combobox',
                     store: ['Ongoing', 'Planning', 'Postponed', 'Finished'],
                     name: 'status',
+                    //value: 'Ongoing',
                     fieldLabel: 'Status'
                 }, {
                     xtype: 'textareafield',
@@ -69,9 +74,11 @@ Ext.define('EunjiClassic.view.main.Window', {
                         handler: 'onAddClick'
                     }, {
                         text: 'Close',
-                        selected: true,
-                        margin: 0,
                         handler: 'onCloseClick'
+                    },{
+                        text: 'Delete',
+                        margin: 0,
+                        handler: 'onDeleteClick'
                     }]
                 }
 

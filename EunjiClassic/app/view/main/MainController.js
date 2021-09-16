@@ -4,22 +4,13 @@ Ext.define('EunjiClassic.view.main.MainController', {
     alias: 'controller.main',
 
     onButtonAfterrender: function(component) {
-        var data = this.getViewModel().get('Ongoing');
-        this.getViewModel().getStore('gridstore').add(data);
+        var firstButtonText = component.items.items[0].config.text;
+        this.getViewModel().set('projectType',firstButtonText);
     },
 
     onButtonChange: function(component, button, isPressed, eOpts )  {
-        // debugger;
-        var btn = button.getText();
-        var data = this.getViewModel().get(btn);
-        var _projectType = this.getViewModel().get('projectType');        
-        var _gridstore = this.getViewModel().getStore('gridstore');
-
-        this.getViewModel().set(_projectType,_gridstore.getRange());
-
-        this.getViewModel().set('projectType',btn);
-        this.getViewModel().getStore('gridstore').removeAll();
-        this.getViewModel().getStore('gridstore').add(data);
+        var buttonText = button.getText();
+        this.getViewModel().set('projectType',buttonText);
     },
 
     onClickButton: function(btn){

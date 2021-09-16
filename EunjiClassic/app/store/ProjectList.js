@@ -1,22 +1,30 @@
-// Ext.define('EunjiClassic.store.ProjectList', {
-//     extend: 'Ext.data.Store',
-//     alias: 'store.project',
+Ext.define('EunjiClassic.store.ProjectList', {
+    extend: 'Ext.data.Store',
+    alias: 'store.projectlist',
 
-//     model: 'EunjiClassic.model.ProjectList',
+    model: 'EunjiClassic.model.ProjectList',
 
-//     // data: { items: [
-//     //     { id: "111", title: 'Jean Luc', manager: "jeanluc.picard", period: "1111", issue: "Jean", startDate: "2021-09-14", status: "Ongoing", description: "Create Project"},
-//     //     { title: 'Worf',     manager: "worf.moghsson",  period: "2222", issue: "Worf" },
-//     //     { title: 'Deanna',   manager: "deanna.troi",    period: "3333", issue: "Deanna" },
-//     //     { title: 'Data',     manager: "mr.data",        period: "4444", issue: "Data" }
-//     // ]},
-//     pageSize: 10,
-
-//     proxy: {
-//         type: 'memory',
-//         reader: {
-//             type: 'json'
-//         },
-//         enablePaging: true
-//     }
-// });
+    // data: { items: []},
+    pageSize: 10,
+    autoLoad: true,
+    proxy: {
+        type: 'ajax',
+        actionMethods: {
+            create : 'POST',
+            read : 'GET',
+            update : 'POST',
+            destroy : 'POST'
+        },
+        api : {
+            create : "https://localhost:5001/projectList/setSampleData",
+            read : "https://localhost:5001/projectList/getSampleData",
+            update : "https://localhost:5001/projectList/modifySampleData",
+            destroy : "https://localhost:5001/projectList/removeSampleData",
+        },
+        reader: {
+            type: 'json',
+            rootProperty: 'items'
+        },
+        // enablePaging: true
+    }
+});

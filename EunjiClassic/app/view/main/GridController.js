@@ -3,7 +3,7 @@ Ext.define('EunjiClassic.view.main.GridController',{
 
     alias: 'controller.projectgrid',
 
-    onInformationIconClick: function(grid, rowIndex, colIndex){
+    onInformationIconClick: function(grid, rowIndex, colIndex){ // 정보아이콘 클릭했을 때
         var record             = grid.getStore().getAt(rowIndex);
         var title           = record.getData().title;
 
@@ -18,15 +18,15 @@ Ext.define('EunjiClassic.view.main.GridController',{
         // debugger;
     },
 
-    createProjectBtnClick : function(btn){
+    createProjectBtnClick : function(btn){ // createProject 클릭했을 때
         Ext.create("createProject",{
             mode: "create"
         }).show(); // window.js의 alias
     },
 
-    onEditRow: function(editor, context, e){
+    onEditRow: function(editor, context, e){ // 더블클릭 시 수정
+        debugger;
         var _record = context.record;
-        var _newValues
 
         if(context.field == 'startDate'){
             console.log("if문");
@@ -35,7 +35,7 @@ Ext.define('EunjiClassic.view.main.GridController',{
         _record.store.save();
     },
 
-    getPeriodRender: function(value, cell, record, dataIndex, cellIndex, store, gridview){
+    getPeriodRender: function(value, cell, record, dataIndex, cellIndex, store, gridview){ // period 수정
         // debugger;
         var period = record.data.startDate + "~" + record.data.endDate;
         return period; // 변수는 크게 의미 없음

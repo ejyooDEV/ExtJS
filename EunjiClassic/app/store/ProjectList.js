@@ -25,6 +25,10 @@ Ext.define('EunjiClassic.store.ProjectList', {
             type: 'json',
             rootProperty: 'items'
         },
+        timeout: 60*1000*60
+        // writer: {
+        //     writeAllFields: true //데이터 수정 시 서버에 모든 데이터가 날라가도록 하는 코드
+        // }
         // enablePaging: true
     }
 });

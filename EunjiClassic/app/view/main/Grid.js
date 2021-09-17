@@ -42,7 +42,8 @@ Ext.define('EunjiClassic.view.main.Grid', {
             }
         },
         {
-            text: 'startDate', align: 'center', flex: 2, dataIndex: 'startDate', format: 'Y-m-d',
+            text: 'StartDate', align: 'center', flex: 2, dataIndex: 'startDate', format: 'Y-m-d',
+            xtype:'datecolumn',
             editor: {
                 xtype: 'datefield',
                 format: 'Y-m-d'

@@ -25,6 +25,7 @@ Ext.define('EunjiClassic.view.main.WindowController',{
                 }
             });
         }else if(windowFlag == 'create'){ // 생성
+            //debugger;
             store.add(form.getValues());
             
             store.save({

@@ -86,7 +86,10 @@ Ext.define('EunjiClassic.view.main.Main', {
             xtype: 'mainprojectlistgrid',
             border: true,
             region: 'center',
-            flex:4
+            flex:4,
+            listeners: {
+                afterrender: 'gridAfterRender'
+            }
         },
         {
             xtype: 'panel',

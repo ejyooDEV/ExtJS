@@ -7,7 +7,7 @@ Ext.define('EunjiClassic.view.main.Main', {
     requires: [
         'EunjiClassic.view.main.MainController',
         'EunjiClassic.view.main.MainModel',
-        'EunjiClassic.view.main.Grid'
+        'EunjiClassic.view.grid.Grid'
     ],
 
     controller: 'main',
@@ -86,10 +86,7 @@ Ext.define('EunjiClassic.view.main.Main', {
             xtype: 'mainprojectlistgrid',
             border: true,
             region: 'center',
-            flex:4,
-            listeners: {
-                afterrender: 'gridAfterRender'
-            }
+            flex:4
         },
         {
             xtype: 'panel',

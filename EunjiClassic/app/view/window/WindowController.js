@@ -1,11 +1,8 @@
-Ext.define('EunjiClassic.view.main.WindowController',{
+Ext.define('EunjiClassic.view.window.WindowController',{
     extend: 'Ext.app.ViewController',
 
     alias : 'controller.projectWindow',
 
-    onFormAfterrender: function(component,eOpts) {
-        component.getValues().status = "Ongoing"; // 안됨 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-    },
     onAddClick : function(btn){
         var form    = btn.up('window').down('form');
         var formValues = form.getValues();
@@ -19,11 +16,13 @@ Ext.define('EunjiClassic.view.main.WindowController',{
             store.save({
                 success: function(response){
                     Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+                    store.reload();
                 },
                 failure: function(response){
                     Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
                 }
             });
+            
         }else if(windowFlag == 'create'){ // 생성
             //debugger;
             store.add(form.getValues());
@@ -32,6 +31,7 @@ Ext.define('EunjiClassic.view.main.WindowController',{
                 //params:formValues, // form Data를 직접 params에 넣어줄 수 있음 : QueryString
                 success: function(response){
                     Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+                    store.reload();
                 },
                 failure: function(response){
                     Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
@@ -57,10 +57,12 @@ Ext.define('EunjiClassic.view.main.WindowController',{
         store.save({
             success: function(response){
                 Ext.Msg.alert('Success', "삭제되었습니다.");
+                store.reload();
             },
             failure: function(response){
                 Ext.Msg.alert('Failed', "삭제가 실패하였습니다.");
             }
-        })
+        });
+        btn.up('window').close();
     }
 });

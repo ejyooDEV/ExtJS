@@ -1,14 +1,11 @@
 /**
  * This view is an example list of people.
  */
-Ext.define('EunjiClassic.view.main.Grid', {
+Ext.define('EunjiClassic.view.grid.Grid', {
     extend: 'Ext.grid.Panel',
     xtype: 'mainprojectlistgrid',
 
     controller: 'projectgrid',
-    // requires: [
-    //     'EunjiClassic.store.ProjectList' // store define data
-    // ],
 
     bind: {
         store: '{gridstore}', // MainModel.js 내 bind data
@@ -84,6 +81,8 @@ Ext.define('EunjiClassic.view.main.Grid', {
             xtype: 'pagingtoolbar',
             bind: {
                 store: '{gridstore}', // MainModel.js 내 bind data
+            },listeners: {
+                beforechange: 'refreshButton'
             },
         },
         '->'

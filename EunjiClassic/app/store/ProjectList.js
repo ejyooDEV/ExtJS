@@ -6,7 +6,7 @@ Ext.define('EunjiClassic.store.ProjectList', {
 
     // data: { items: []},
     pageSize: 10,
-    autoLoad: true,
+    autoLoad: true,//store가 생성될 때 자동으로 로드하게 해주는 코드, Read Service를 자동으로 호출해줌
     proxy: {
         type: 'ajax',
         actionMethods: {
@@ -27,6 +27,7 @@ Ext.define('EunjiClassic.store.ProjectList', {
         },
         timeout: 60*1000*60
         // writer: {
+            
         //     writeAllFields: true //데이터 수정 시 서버에 모든 데이터가 날라가도록 하는 코드
         // }
         // enablePaging: true

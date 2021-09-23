@@ -1,11 +1,11 @@
-Ext.define('EunjiClassic.view.main.Window', {
+Ext.define('EunjiClassic.view.window.Window', {
     extend: 'Ext.window.Window',
     alias: 'createProject',
 
     requires: [
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox',
-        'EunjiClassic.view.main.WindowController'
+        'EunjiClassic.view.window.WindowController'
     ],
     
     controller: 'projectWindow',
@@ -16,9 +16,6 @@ Ext.define('EunjiClassic.view.main.Window', {
     items: [
         {
             xtype: 'form',
-            listeners: {
-                afterrender: 'onFormAfterrender'
-            },
             items: [
                 {
                     xtype: 'textfield',
@@ -44,7 +41,7 @@ Ext.define('EunjiClassic.view.main.Window', {
                     xtype: 'combobox',
                     store: ['Ongoing', 'Planning', 'Postponed', 'Finished'],
                     name: 'status',
-                    //value: 'Ongoing',
+                    value: 'Ongoing',
                     fieldLabel: 'Status'
                 }, {
                     xtype: 'textareafield',
@@ -59,6 +56,7 @@ Ext.define('EunjiClassic.view.main.Window', {
                     displayField: 'MenuTemplate',
                     valueField: 'data',
                     name: 'menuTemplate',
+                    value: 'SILKROAD Template',
                     fieldLabel: 'MenuTemplate'
                 }, {
                     xtype: 'panel',

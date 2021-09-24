@@ -1,9 +1,9 @@
-Ext.define('EunjiClassic2.store.Personnel', {
+Ext.define('EunjiClassic2.store.ProjectList', {
     extend: 'Ext.data.Store',
 
-    alias: 'store.personnel',
+    alias: 'store.projectlist',
 
-    model: 'EunjiClassic2.model.Personnel',
+    model: 'EunjiClassic2.model.ProjectList',
 
     data: { items: [
         { name: 'Jean Luc', email: "jeanluc.picard@enterprise.com", phone: "555-111-1111" },

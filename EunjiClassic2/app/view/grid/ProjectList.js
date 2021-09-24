@@ -1,19 +1,18 @@
 /**
  * This view is an example list of people.
  */
-Ext.define('EunjiClassic2.view.main.List', {
+Ext.define('EunjiClassic2.view.grid.ProjectList', {
     extend: 'Ext.grid.Panel',
-    xtype: 'mainlist',
+    xtype: 'projectlist',
 
-    requires: [
-        'EunjiClassic2.store.Personnel'
-    ],
-
-    title: 'Personnel',
-
-    store: {
-        type: 'personnel'
+    bind: {
+        store: '{projectListGridStore}',
+        title: '{projectType} Project',
     },
+
+    title: 'ProjectList',
+
+    
 
     columns: [
         { text: 'Name',  dataIndex: 'name' },

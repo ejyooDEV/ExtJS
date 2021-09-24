@@ -81,9 +81,31 @@ Ext.define('EunjiClassic.view.grid.Grid', {
             xtype: 'pagingtoolbar',
             bind: {
                 store: '{gridstore}', // MainModel.js 내 bind data
-            },listeners: {
-                beforechange: 'refreshButton'
             },
+
+            moveFirst: function(btn){
+                this.getStore().currentPage = 1;
+                debugger;
+            },
+            moveNext: function (btn) {
+                this.getStore().currentPage++;
+                debugger;
+            },
+            movePrevious: function (btn) {
+                this.getStore().currentPage--;
+                debugger;
+            },
+            moveLast: function (btn) {
+                debugger;
+            },
+            doRefresh: function (btn) {
+                this.getStore().currentPage = 1;
+                debugger;
+            }
+            
+            // listeners: {
+            //     beforechange: 'refreshButton'
+            // },
         },
         '->'
     ],

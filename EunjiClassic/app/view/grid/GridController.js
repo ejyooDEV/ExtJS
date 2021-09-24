@@ -42,9 +42,10 @@ Ext.define('EunjiClassic.view.grid.GridController',{
         return period; // 변수는 크게 의미 없음
     },
 
-    refreshButton:function(pagingtoolbar,page){
-        console.log('툴바 진입');
-    }
+    
+    // refreshButton:function(pagingtoolbar,page){
+    //     debugger;
+    // }
 
     // onButtonChange: function(segmentedbutton, button, isPressed, eOpts )  { // 버튼 클릭 시 title 변경
     //     alert("User toggled the '" + button.getText() + "' button: " +

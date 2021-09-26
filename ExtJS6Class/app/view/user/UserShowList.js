@@ -1,0 +1,73 @@
+Ext.define('ExtJS6Class.view.user.UserShowList',{
+  extend: 'Ext.panel.Panel',
+  alias:'widget.usershowlist',
+  requires:[
+    'ExtJS6Class.view.user.UserShowListController',
+    'ExtJS6Class.view.user.UserShowListModel'
+  ],
+  controller:'usershowlist',
+  closable:true,
+  viewModel:{
+    type:'usershowlist'
+  },
+  title:'사용자 목록조회',
+  bodyPadding:'5 5 5 5',
+  items:[{
+    xtype:'fieldset',
+    layout:'hbox',
+    width:'100%',
+    padding:'5 5 5 5',
+    items:[{
+      xtype:'textfield',
+      name:'nickName',
+      fieldLabel:'사용자ID',
+      reference:'nickName',
+      bind:'{nickName}'
+    },{
+      xtype:'tbspacer',
+      flex:1
+    },{
+      xtype:'button',
+      text:'조회',
+      handler:'onSearch',
+    }],
+  },{
+    xtype:'tbspacer',
+    height:10
+  },{
+    xtype:'grid',
+    reference:'gridUser',
+    bind:{
+      store:'{userInfo}'
+    },
+    width:'100%',
+    height:250,
+    columnLines:true,
+    columns:[{
+      text:'순번',
+      xtype:'rownumberer',
+      width:80,
+    },{
+      text:'아이디',
+      dataIndex:'userId',
+      flex:1
+    },{
+      text:'닉네임',
+      dataIndex:'nickName',
+      flex:2
+    },{
+      text:'이메일',
+      dataIndex:'email',
+      flex:2
+    },{
+      xtype:'actioncolumn',
+      text:'상세화면',
+      align:'center',
+      width:100,
+      items:[{
+        icon:'./resource/img/detail.png',
+        handler:'onPageMoveUserShow'
+      }]
+    }]
+  }]
+});

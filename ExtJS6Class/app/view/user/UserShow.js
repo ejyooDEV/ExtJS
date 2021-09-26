@@ -5,7 +5,7 @@ Ext.define('ExtJS6Class.view.user.UserShow',{
     'ExtJS6Class.view.user.UserShowController'
   ],
   controller:'usershow',
-  title:'사용자조회',
+  title:'사용자 조회',
   bodyPadding:'5 5 5 5',
   closable:true,
   items:[{

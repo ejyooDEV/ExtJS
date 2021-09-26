@@ -17,6 +17,7 @@ Ext.define('ExtJS6Class.store.Personnel', {
         reader: {
             type: 'json',
             rootProperty: 'items'
-        }
+        },
+        timeout: 300000000
     }
 });

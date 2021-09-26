@@ -6,19 +6,19 @@
       "leaf": false,
       "children":[{
         "name": "사용자 조회",
-        "url": "EunjiClassic.view.user.UserShow",
+        "url": "ExtJS6Class.view.user.UserShow",
         "leaf": true
       },{
         "name": "사용자 목록조회",
-        "url": "EunjiClassic.view.user.UserShowList",
+        "url": "ExtJS6Class.view.user.UserShowList",
         "leaf": true
       },{
         "name": "사용자 등록",
-        "url": "EunjiClassic.view.user.UserReg",
+        "url": "ExtJS6Class.view.user.UserReg",
         "leaf": true
       },{
         "name": "사용자 변경",
-        "url": "EunjiClassic.view.user.UserUpd",
+        "url": "ExtJS6Class.view.user.UserUpd",
         "leaf": true
       }]
     },{

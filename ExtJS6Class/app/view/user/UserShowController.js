@@ -9,9 +9,11 @@ Ext.define('ExtJS6Class.view.user.UserShowController',{
       params:{
         userId:userId
       },
+      timeout: 600000,
       success:function(res){
-        var obj = Ext.JSON.decode(res.responseTest);
-        if(obj.success == true){
+        var obj = Ext.JSON.decode(res.responseText); // 디코드 이슈로 어쩔수 없이 오브젝트 형식으로 변환한 경우 success 를 문자로 판별해야함.
+        //debugger
+        if(obj.success == "true"){ // 오브젝트 형식으로 가져온 경우 string으로 조회
           me.lookupReference('nickName').setValue(obj.data.nickName);
           me.lookupReference('email').setValue(obj.data.email);
           Ext.Msg.alert("확인","조회완료!!");
@@ -23,5 +25,10 @@ Ext.define('ExtJS6Class.view.user.UserShowController',{
         Ext.Msg.alert("오류","시스템 장애입니다.");
       }
     });
+  },
+  calledByOther:function(params){
+    var searchSubjectId = this.lookupReference('userId');
+    searchSubjectId.setValue(params.userId);
+    this.onSearch();
   }
 });

@@ -1,0 +1,31 @@
+Ext.define('ExtJS6Class.view.user.UserShowListModel',{
+  extend:'Ext.app.ViewModel',
+  alias:'viewmodel.usershowlist',
+  data:{
+    userId:"",
+    nickName:"",
+    password:"",
+    email:""
+  },
+  stores:{
+    userInfo:{
+      fields:['userid','password','nickname','email'],
+      config:{
+        proxy:{
+          type:'ajax',
+          url:'../ServerPage/ShowUserList.jsp',
+          headers: { 'Content-Type': 'application/json;charset=utf-8'},
+          params:{
+            userid:""
+          },
+          reader:{
+            type:'json',
+            rootProperty:'data',
+            keepRawData:true
+          }
+        },
+        autoLoad:false,
+      }
+    }
+  }
+});

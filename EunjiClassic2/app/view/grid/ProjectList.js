@@ -10,8 +10,9 @@ Ext.define('EunjiClassic2.view.grid.ProjectList', {
         title: '{projectType} Project',
     },
 
-    title: 'ProjectList',
+    header: {
 
+    },
     
 
     columns: [

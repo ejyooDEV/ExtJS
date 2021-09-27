@@ -100,7 +100,6 @@ Ext.define('EunjiClassic.view.grid.Grid', {
             },
             doRefresh: function (btn) {
                 this.getStore().currentPage = 1;
-                debugger;
             }
             
             // listeners: {

@@ -33,7 +33,7 @@ Ext.define('EunjiClassic.view.grid.GridController',{
             _record.set('startDate',Ext.util.Format.date(context.value,'Y-m-d'));
         }
         _record.store.save();
-        store.load();
+        store.reload();
     },
 
     getPeriodRender: function(value, cell, record, dataIndex, cellIndex, store, gridview){ // period 수정

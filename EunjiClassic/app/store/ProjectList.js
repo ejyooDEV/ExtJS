@@ -23,7 +23,8 @@ Ext.define('EunjiClassic.store.ProjectList', {
         },
         reader: {
             type: 'json',
-            rootProperty: 'items'
+            rootProperty: 'data', // 데이타로 사용할 키 설정
+            totalProperty: 'totalCount'
         },
         timeout: 60*1000*60,
         // writer: {

@@ -79,28 +79,29 @@ Ext.define('EunjiClassic.view.grid.Grid', {
         '->',
         {
             xtype: 'pagingtoolbar',
+            displayInfo: true,
+            displayMsg: 'Displaying ProjectList {0} - {1} of {2}',
+            emptyMsg: "No topics to display",
             bind: {
                 store: '{gridstore}', // MainModel.js 내 bind data
             },
 
-            moveFirst: function(btn){
-                this.getStore().currentPage = 1;
-                debugger;
-            },
-            moveNext: function (btn) {
-                this.getStore().currentPage++;
-                debugger;
-            },
-            movePrevious: function (btn) {
-                this.getStore().currentPage--;
-                debugger;
-            },
-            moveLast: function (btn) {
-                debugger;
-            },
-            doRefresh: function (btn) {
-                this.getStore().currentPage = 1;
-            }
+            // moveFirst: function(btn){
+            //     this.getStore().currentPage = 1;
+            // },
+            // moveNext: function (btn) {
+            //     debugger;
+            //     this.getStore().currentPage++;
+            //     store.reload();
+            // },
+            // movePrevious: function (btn) {
+            //     this.getStore().currentPage--;
+            // },
+            // moveLast: function (btn) {
+            // },
+            // doRefresh: function (btn) {
+            //     this.getStore().currentPage = 1;
+            // }
             
             // listeners: {
             //     beforechange: 'refreshButton'

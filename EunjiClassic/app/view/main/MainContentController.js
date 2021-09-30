@@ -46,4 +46,27 @@ Ext.define('EunjiClassic.view.main.MainContentController', {
             scope: this
         });
     },
+
+    /**
+     * 그리드 내 셀 클릭 시 현재 화면에 content 영역을 지우고 새로운 화면으로 이동하도록 설정
+     * @param {*} grid 
+     * @param {*} td 
+     * @param {*} cellIndex 
+     * @param {*} record 
+     * @param {*} tr 
+     * @param {*} rowIndex 
+     * @param {*} e 
+     * @param {*} eOpts 
+     */
+     onMainProjectListCellClick: function (grid, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+         debugger;
+        var appMain = this.getView().up('app-main');
+
+        //this.getView().down('projectGridList').removeAll(); //projectGridList내 아이템만 지울 때
+        appMain.remove(this.getView()); // mainview에서 해당 프로젝트 아이템이 속한 영역을 삭제할 때(부모에서 자식요소 삭제)
+        appMain.add({ xtype: 'project-main', region: 'center' });
+
+        //Ext.getApplication().redirectTo('project/'+record.id); // url만 변경해줌
+        //this.clearMainView().setMainView('EunjiClassic.view.page.'+record.id);
+    },
 });

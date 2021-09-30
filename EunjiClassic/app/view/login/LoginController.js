@@ -1,4 +1,4 @@
-Ext.define('EunjiClassic.view.main.LoginController',{
+Ext.define('EunjiClassic.view.login.LoginController',{
     extend: 'Ext.app.ViewController',
     alias: 'controller.silkroadlogin',
 

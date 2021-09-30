@@ -3,50 +3,43 @@ Ext.define('EunjiClassic.view.main.MainController', {
 
     alias: 'controller.main',
 
-    onButtonAfterrender: function(segmentedbutton) { // segmentedbutton 로드 후 title 변경 및 grid store filter 적용
-        //store.clearFilter();
-        var vm = this.getViewModel();
-        var store = vm.getStore('gridstore');
-        // title
-        var firstButtonText = segmentedbutton.items.items[0].config.text;
-        this.getViewModel().set('projectType',firstButtonText);
-        store.load({
-            params: {
-                status: firstButtonText
-            },
-            scope: this
-        });
-        // grid change
-        //this.getViewModel().getStore('gridstore').filter('status',firstButtonText);
-    },
-
-    onButtonChange: function(segmentedbutton, button, isPressed, eOpts )  { // 버튼 클릭 시 title 변경
-        var vm = this.getViewModel(); 
-
-        var store = vm.getStore('gridstore');
-        var buttonText = button.getText();
-        store.clearFilter(); // id 중첩으로 인하여 해당 작업 필요(정확치는 않음)
-        
-        vm.set('projectType',buttonText);// title change
-        //store.filter('status',buttonText);
-        store.load({
-            params: {
-                status: buttonText
-            },
-            //callback: function(records, operation, success) { },
-            scope: this
-        });
-    },
-
-    onClickButton: function(btn){ // 로그인 아이콘 클릭 시 로그인 페이지 출력
+    /**
+     * Login 버튼 클릭 시 로그인 페이지 출력
+     * @param {} btn 
+     */
+    onClickButton: function (btn) {
         localStorage.removeItem('TutorialLoggedIn');
         this.getView().destroy();
         Ext.widget('login');
     },
 
-    ExtWidgetTest: function(btn){ // 트리 윈도우 표시
+    /**
+     * 트리 윈도우 표시
+     * @param {}} btn 
+     */
+    ExtWidgetTest: function (btn) {
         var createProjectWindow = Ext.create("treewindow");
         createProjectWindow.show();
-    }
+    },
+
+    /**
+     * 그리드 내 셀 클릭 시 현재 화면에 content 영역을 지우고 새로운 화면으로 이동하도록 설정
+     * @param {*} grid 
+     * @param {*} td 
+     * @param {*} cellIndex 
+     * @param {*} record 
+     * @param {*} tr 
+     * @param {*} rowIndex 
+     * @param {*} e 
+     * @param {*} eOpts 
+     */
+    onMainProjectListCellClick: function (grid, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+        //this.getView().down('projectGridList').removeAll(); //projectGridList내 아이템만 지울 때
+        this.getView().remove(this.getView().down('main-content')); // mainview에서 해당 프로젝트 아이템이 속한 영역을 삭제할 때(부모에서 자식요소 삭제)
+        this.getView().add({ xtype: 'project-main', region: 'center' });
+
+        //Ext.getApplication().redirectTo('project/'+record.id); // url만 변경해줌
+        //this.clearMainView().setMainView('EunjiClassic.view.page.'+record.id);
+    },
 
 });

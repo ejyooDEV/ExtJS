@@ -7,7 +7,7 @@ Ext.define('EunjiClassic.view.window.Window', {
         'Ext.window.MessageBox',
         'EunjiClassic.view.window.WindowController'
     ],
-    
+
     controller: 'projectWindow',
     width: 800,
     height: 500,
@@ -51,7 +51,7 @@ Ext.define('EunjiClassic.view.window.Window', {
                     anchor: '100%'
                 }, {
                     xtype: 'combobox',
-                    store: ['SILKROAD Template','DOOSAN'],
+                    store: ['SILKROAD Template', 'DOOSAN'],
                     queryMode: 'local',
                     displayField: 'MenuTemplate',
                     valueField: 'data',
@@ -73,7 +73,7 @@ Ext.define('EunjiClassic.view.window.Window', {
                     }, {
                         text: 'Close',
                         handler: 'onCloseClick'
-                    },{
+                    }, {
                         text: 'Delete',
                         margin: 0,
                         handler: 'onDeleteClick'

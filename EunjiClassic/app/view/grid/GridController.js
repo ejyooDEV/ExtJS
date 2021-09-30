@@ -2,7 +2,7 @@ Ext.define('EunjiClassic.view.grid.GridController',{
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.projectgrid',
-
+    
     onInformationIconClick: function(grid, rowIndex, colIndex){ // 정보아이콘 클릭했을 때
         var record             = grid.getStore().getAt(rowIndex);
         var title           = record.getData().title;
@@ -41,6 +41,17 @@ Ext.define('EunjiClassic.view.grid.GridController',{
         var period = Ext.util.Format.date(recordData.startDate,'Y-m-d') + "~" + Ext.util.Format.date(recordData.endDate,'Y-m-d');
         return period; // 변수는 크게 의미 없음
     },
+
+    // Ext.getApplication().redirectTo 일때 routes 사용
+    // routes : {
+    //     'project/:id':'onProject'
+    // },
+    
+    // onProject : function(recordId){
+    //     //EunjiClassic.view.page.ProjectList-1
+    //     debugger;
+    //     console.log('ttt'+recordId);
+    // }
 
     
     // refreshButton:function(pagingtoolbar,page){

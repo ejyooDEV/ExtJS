@@ -9,11 +9,11 @@ Ext.define('EunjiClassic.Application', {
     name: 'EunjiClassic',
 
     views: [
-        'EunjiClassic.view.main.Login',
+        'EunjiClassic.view.login.Login',
         'EunjiClassic.view.main.Main'
     ],
 
-    launch: function() {
+    launch: function () {
         var loggedIn;
 
         loggedIn = localStorage.getItem("TutorialLoggedIn"); // LoginController localStorage

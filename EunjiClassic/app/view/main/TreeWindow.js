@@ -1,7 +1,7 @@
 Ext.define('EunjiClassic.view.main.TreeWindow', {
     extend: 'Ext.window.Window',
     // xtype: 'treewindow',
-    alias:'treewindow',
+    alias: 'treewindow',
 
     width: 800,
     height: 500,
@@ -12,6 +12,6 @@ Ext.define('EunjiClassic.view.main.TreeWindow', {
             xtype: 'leftmenu',
             width: 200,
             collapsible: true
-            
+
         }]
 });

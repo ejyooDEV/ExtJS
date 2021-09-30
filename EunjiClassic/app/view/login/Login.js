@@ -1,9 +1,9 @@
-Ext.define('EunjiClassic.view.main.Login',{
+Ext.define('EunjiClassic.view.login.Login',{
     extend: 'Ext.window.Window',
     xtype: 'login',
 
     requires: [
-        'EunjiClassic.view.main.LoginController',
+        'EunjiClassic.view.login.LoginController',
         'Ext.form.Panel'
     ],
 

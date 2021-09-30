@@ -6,7 +6,7 @@ Ext.application({
     extend: 'EunjiClassic.Application',
 
     name: 'EunjiClassic',
-
+    
     requires: [
         // This will automatically load all classes in the EunjiClassic namespace
         // so that application classes do not need to require each other.

@@ -110,10 +110,7 @@ Ext.define('EunjiClassic.view.grid.Grid', {
         '->'
     ],
 
-    listeners: {
-        // rowdblclick: 'onItemdbClick',
-        edit: 'onEditRow'
-    },
+    
     columnLines: true,
 
     plugins: {

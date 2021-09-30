@@ -10,25 +10,25 @@ Ext.define('EunjiClassic.store.ProjectList', {
     proxy: {
         type: 'ajax',
         actionMethods: {
-            create : 'POST',
-            read : 'GET',
-            update : 'POST',
-            destroy : 'POST'
+            create: 'POST',
+            read: 'GET',
+            update: 'POST',
+            destroy: 'POST'
         },
-        api : {
-            create : "https://localhost:5001/projectList/setSampleData",
-            read : "https://localhost:5001/projectList/getSampleData",
-            update : "https://localhost:5001/projectList/modifySampleData",
-            destroy : "https://localhost:5001/projectList/removeSampleData",
+        api: {
+            create: "https://localhost:5001/projectList/setSampleData",
+            read: "https://localhost:5001/projectList/getSampleData",
+            update: "https://localhost:5001/projectList/modifySampleData",
+            destroy: "https://localhost:5001/projectList/removeSampleData",
         },
         reader: {
             type: 'json',
             rootProperty: 'data', // 데이타로 사용할 키 설정
             totalProperty: 'totalCount'
         },
-        timeout: 60*1000*60,
+        timeout: 60 * 1000 * 60,
         // writer: {
-            
+
         //     writeAllFields: true //데이터 수정 시 서버에 모든 데이터가 날라가도록 하는 코드
         // }
         //enablePaging: true

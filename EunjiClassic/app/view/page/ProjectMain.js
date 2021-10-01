@@ -1,8 +1,11 @@
 Ext.define('EunjiClassic.view.page.ProjectMain', {
     extend: 'Ext.panel.Panel',
     xtype: 'project-main',
-    title: 'ttt',
+    title: '프로젝트 상세페이지',
+    
     controller: 'project-main',
+    viewModel: 'project-main',
+
     id: null,
     listeners: {
         afterrender: 'onProjectMain'
@@ -15,7 +18,8 @@ Ext.define('EunjiClassic.view.page.ProjectMain', {
                     xtype: 'textfield',
                     name: 'title',
                     fieldLabel: 'Title',
-                    allowBlank: false
+                    allowBlank: false,
+                    bind: '{item.title}'
                 }, {
                     xtype: 'datefield',
                     anchor: '100%',
@@ -23,24 +27,27 @@ Ext.define('EunjiClassic.view.page.ProjectMain', {
                     fieldLabel: 'StartDate',
                     submitFormat: 'Y-m-d',
                     format: 'Y-m-d',
-                    value: new Date()  // defaults to today
+                    bind: {
+                        value: '{item.startDate}'
+                    }
                 }, {
                     xtype: 'datefield',
                     anchor: '100%',
                     name: 'endDate',
                     fieldLabel: 'EndDate',
                     format: 'Y-m-d',
-                    value: new Date()  // defaults to today
+                    bind: '{item.endDate}'
                 }, {
                     xtype: 'combobox',
                     store: ['Ongoing', 'Planning', 'Postponed', 'Finished'],
                     name: 'status',
-                    value: 'Ongoing',
+                    bind: '{item.status}',
                     fieldLabel: 'Status'
                 }, {
                     xtype: 'textareafield',
                     grow: true,
                     name: 'description',
+                    bind: '{item.description}',
                     fieldLabel: 'Description',
                     anchor: '100%'
                 }, {
@@ -50,7 +57,7 @@ Ext.define('EunjiClassic.view.page.ProjectMain', {
                     displayField: 'MenuTemplate',
                     valueField: 'data',
                     name: 'menuTemplate',
-                    value: 'SILKROAD Template',
+                    bind: '{item.menuTemplate}',
                     fieldLabel: 'MenuTemplate'
                 }
 

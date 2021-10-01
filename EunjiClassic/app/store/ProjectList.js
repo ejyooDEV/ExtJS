@@ -17,7 +17,7 @@ Ext.define('EunjiClassic.store.ProjectList', {
         },
         api: {
             create: "https://localhost:5001/projectList/setSampleData",
-            read: "https://localhost:5001/projectList/getSampleData",
+            read: "https://localhost:5001/projectList/getSampleDataAll",
             update: "https://localhost:5001/projectList/modifySampleData",
             destroy: "https://localhost:5001/projectList/removeSampleData",
         },

@@ -1,7 +1,7 @@
-Ext.define('EunjiClassic.view.main.MainContent', {
+Ext.define('EunjiClassic.view.main.Content', {
     extend: 'Ext.panel.Panel',
-    xtype: 'main-content',
-    controller: 'main-content',
+    xtype: 'content',
+    controller: 'content',
     layout: 'border',
     items: [
         {

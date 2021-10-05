@@ -54,7 +54,7 @@ Ext.define('EunjiClassic.view.main.Main', {
             ]
         }, {
             region: 'center',
-            xtype: 'main-content'
+            xtype: 'content'
         }
     ]
 });

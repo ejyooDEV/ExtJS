@@ -1,6 +1,6 @@
-Ext.define('EunjiClassic.view.main.MainContentController', {
+Ext.define('EunjiClassic.view.main.ContentController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.main-content',
+    alias: 'controller.content',
 
     /**
      * MainContent 내 segmentedbutton 버튼이 로드될 시 bindData 변경 및 store 로드

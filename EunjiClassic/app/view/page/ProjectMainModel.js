@@ -5,7 +5,7 @@ Ext.define('EunjiClassic.view.page.ProjectMainModel',{
     data: {item: null},
 
     stores:{
-        treestore:{
+        testtreestore:{
             type:'treestorelist'
         }
     }

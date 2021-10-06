@@ -3,7 +3,7 @@ Ext.define("EunjiClassic.view.page.tree.window.Window",{
     alias:'createnode',
 
     controller:'nodewindow',
-    viewModel:'nodewindow',
+    //viewModel:'nodewindow',
     width:300,
     height:200,
     title:'New Node',

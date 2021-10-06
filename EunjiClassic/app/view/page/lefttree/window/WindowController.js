@@ -4,22 +4,17 @@ Ext.define('EunjiClassic.view.page.tree.window.WindowController',{
 
     onAddClick: function(btn){
         var form = btn.up('window').down('form');
-        //console.log(form);
-
-        debugger;
-        //this.getViewModel().get('treestore').$className
-        /**
-         * Ext.create("createnode").show();
-        var treeModel = this.getView().getSelectionModel();
+        var title = form.getValues().title;
+        var treeModel = this.getView().treeModel;
         var node = treeModel.getLastSelected();
         node.appendChild({
             leaf:true,
-            name: 'New Child'
+            name:title
         });
         node.expand();
         node.commit();
-         * 
-         */
+
+        btn.up('window').close();
     },
     onCloseClick:function(btn){
         var win = btn.up('window');

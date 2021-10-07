@@ -1,4 +1,4 @@
-Ext.define('EunjiClassic.view.page.filter.ColumnFilter',{
+Ext.define('EunjiClassic.view.second.filter.ColumnFilter',{
     extend:'Ext.panel.Panel',
     xtype:'columnfilter',
     layout:'hbox',

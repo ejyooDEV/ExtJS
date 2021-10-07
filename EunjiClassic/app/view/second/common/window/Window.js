@@ -1,4 +1,4 @@
-Ext.define("EunjiClassic.view.page.tree.window.Window",{
+Ext.define("EunjiClassic.view.second.common.window.Window",{
     extend:'Ext.window.Window',
     alias:'createnode',
 

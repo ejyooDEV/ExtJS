@@ -1,4 +1,4 @@
-Ext.define('EunjiClassic.view.page.ProjectMainController', {
+Ext.define('EunjiClassic.view.second.ProjectMainController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.project-main',
 

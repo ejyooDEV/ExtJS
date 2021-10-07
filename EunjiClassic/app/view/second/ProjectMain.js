@@ -1,4 +1,4 @@
-Ext.define('EunjiClassic.view.page.ProjectMain', {
+Ext.define('EunjiClassic.view.second.ProjectMain', {
     extend: 'Ext.panel.Panel',
     xtype: 'project-main',
     title: '프로젝트 상세페이지',
@@ -7,6 +7,7 @@ Ext.define('EunjiClassic.view.page.ProjectMain', {
     viewModel: 'project-main',
 
     id: null,
+    layout: 'border',
     listeners: {
         afterrender: 'onProjectMain'
     },
@@ -21,13 +22,16 @@ Ext.define('EunjiClassic.view.page.ProjectMain', {
             ]
         },
         {
-            xtype:'panel',
+            xtype:'lefttree',
             region:'center',
-            items: [
-                {
-                    xtype: 'lefttree',
-                }
-            ]
+            border: true,
+            flex:1
+        },
+        {
+            xtype:'righttree',
+            region:'east',
+            border: true,
+            flex:1
         }
     ]
 });

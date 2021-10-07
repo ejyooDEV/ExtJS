@@ -1,11 +1,14 @@
-Ext.define('EunjiClassic.view.page.ProjectMainModel',{
+Ext.define('EunjiClassic.view.second.ProjectMainModel',{
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.project-main',
 
     data: {item: null},
 
     stores:{
-        testtreestore:{
+        leftstore:{
+            type:'treestorelist'
+        },
+        rightstore:{
             type:'treestorelist'
         }
     }

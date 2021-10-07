@@ -1,14 +1,15 @@
-Ext.define("EunjiClassic.view.page.tree.LeftTree",{
+Ext.define("EunjiClassic.view.second.righttree.RightTree",{
     extend:'Ext.tree.Panel',
-    alias:'widget.lefttree',
-    controller:'lefttree',
-    title:'트리',
+    alias:'widget.righttree',
+    controller:'righttree',
+    title:'트리2',
     rootVisible: false,
     displayField: 'name',
+    //autoSync:true,
     // useArrows: true,
     
     bind: {
-        store: '{testtreestore}', // ProjectMainModel.js 내 bind data
+        store: '{rightstore}', // ProjectMainModel.js 내 bind data
     },
     // plugins: {
     //     cellediting: {

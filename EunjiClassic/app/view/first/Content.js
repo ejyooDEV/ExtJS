@@ -7,11 +7,15 @@ Ext.define('EunjiClassic.view.main.Content', {
         {
             xtype: 'toolbar',
             region: 'north',
+            flex:0.3,
+            style:{
+                padding: '0 0 0 0',
+                backgroundColor:'#f6f6f6'
+            },
             items: [
                 {
 
                     xtype: 'segmentedbutton',
-
                     listeners: {
                         toggle: 'onButtonChange',
                         afterrender: 'onButtonAfterrender'
@@ -37,7 +41,7 @@ Ext.define('EunjiClassic.view.main.Content', {
             xtype: 'mainprojectlistgrid',
             region: 'center',
             border: true,
-            flex: 4,
+            flex: 6,
             listeners: {
                 // rowdbclick: 'onItemdbClick',
                 // edit: 'onEditRow',

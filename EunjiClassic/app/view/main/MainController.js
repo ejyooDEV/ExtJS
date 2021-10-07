@@ -22,4 +22,20 @@ Ext.define('EunjiClassic.view.main.MainController', {
         createProjectWindow.show();
     },
 
+    /**
+     * 홈으로 이동
+     */
+    onPageChangeHome: function(btn){
+        // 가져온 뷰의 아이디가 app-main인지
+        //아닌지
+        var appMain = this.getView();
+        var subView = this.getView().down('project-main');
+
+        if(subView){
+            appMain.remove(subView);
+            appMain.add({ xtype: 'content', region: 'center'});
+        }else{
+            return;
+        }
+    }
 });

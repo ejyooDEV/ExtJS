@@ -17,7 +17,16 @@ Ext.define('EunjiClassic.view.main.Main', {
         {
             region: 'north',
             xtype: 'toolbar',
+            style:{
+                backgroundColor:'#515f75'
+            },
             items: [
+                {
+                    xtype:'button',
+                    iconCls:'fas fa-home',
+                    text:'홈으로',
+                    handler:'onPageChangeHome'
+                },
                 {
 
                     xtype: 'image',
@@ -42,15 +51,15 @@ Ext.define('EunjiClassic.view.main.Main', {
                 {
                     xtype: 'button',
                     iconCls: 'fas fa-user',
-                    handler: 'onClickButton'
+                    handler: 'onClickButton',
+                    html: '&nbsp;&nbsp;유은지'
                 },
-                {
-                    xtype: 'button',
-                    iconCls: 'fas fa-user',
-                    text: '트리 테스트',
-                    handler: 'ExtWidgetTest'
-                },
-                '유은지'
+                // {
+                //     xtype: 'button',
+                //     iconCls: 'fas fa-user',
+                //     text: '트리 테스트',
+                //     handler: 'ExtWidgetTest'
+                // },
             ]
         }, {
             region: 'center',

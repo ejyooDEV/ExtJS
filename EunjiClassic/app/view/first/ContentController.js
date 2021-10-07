@@ -49,14 +49,6 @@ Ext.define('EunjiClassic.view.main.ContentController', {
 
     /**
      * 그리드 내 셀 클릭 시 현재 화면에 content 영역을 지우고 새로운 화면으로 이동하도록 설정
-     * @param {*} grid 
-     * @param {*} td 
-     * @param {*} cellIndex 
-     * @param {*} record 
-     * @param {*} tr 
-     * @param {*} rowIndex 
-     * @param {*} e 
-     * @param {*} eOpts 
      */
      onMainProjectListCellClick: function (grid, td, cellIndex, record, tr, rowIndex, e, eOpts) {
         var appMain = this.getView().up('app-main');

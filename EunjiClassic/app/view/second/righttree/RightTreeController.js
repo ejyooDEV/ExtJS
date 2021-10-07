@@ -12,6 +12,7 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController',{
             // viewModel:{
             //     parent:vm
             // },
+            treeView: this.getView(),
             treeModel: this.getView().getSelectionModel()
         }).show();
         // 플러그인 테스트 중..

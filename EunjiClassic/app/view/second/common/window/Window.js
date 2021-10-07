@@ -5,36 +5,32 @@ Ext.define("EunjiClassic.view.second.common.window.Window",{
     controller:'nodewindow',
     //viewModel:'nodewindow',
     width:300,
-    height:200,
+    height:150,
     title:'New Node',
     items:[
         {
             xtype:'form',
+            height:50,
+            defaults:{
+                margin:'12 50 12 50',
+                anchor: '100%'
+            },
             items:[
                 {
                     xtype:'textfield',
                     name:'title',
                     fieldLabel:'Title',
                     allowBlank:false
-                },{
-                    xtype:'panel',
-                    layout:'hbox',
-                    margin:'20 0 0 0',
-                    bodyPadding:20,
-                    defaults:{
-                        xtype:'button',
-                        margin:'0 12 0 0'
-                    },
-                    items: [{
-                        text:'OK',
-                        handler:'onAddClick'
-                    },{
-                        text:'Close',
-                        handler:'onCloseClick'
-                    }]
                 }
-                
             ]
         }
-    ]
+    ],
+    buttons:[{
+        text:'OK',
+        handler:'onAddClick',
+        formBind:true
+    },{
+        text:'Close',
+        handler:'onCloseClick',
+    }]
 });

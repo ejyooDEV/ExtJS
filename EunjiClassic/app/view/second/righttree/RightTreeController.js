@@ -45,10 +45,4 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController',{
         parentNode.commit();
         //this.getView().getStore().load({node:parentNode}); // 해당 노드에 트리노드가 삽입된것 같이 적용됨.
     },
-
-    // 노드 더블클릭
-    treeEdit: function(editor, row){
-        console.log('test');
-    }
-
 });

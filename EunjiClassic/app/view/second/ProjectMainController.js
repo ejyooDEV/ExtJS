@@ -3,7 +3,7 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
     alias: 'controller.project-main',
 
     onProjectMain:function(){},
-    
+    /*
     init:function(){
         var me = this;
         var vm = this.getViewModel();
@@ -48,4 +48,5 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
             }
         });
     }
+    */
 });

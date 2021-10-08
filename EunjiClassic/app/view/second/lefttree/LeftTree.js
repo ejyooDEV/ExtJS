@@ -11,23 +11,26 @@ Ext.define("EunjiClassic.view.second.lefttree.LeftTree",{
     bind: {
         store: '{leftstore}', // ProjectMainModel.js 내 bind data
     },
-    // plugins: {
-    //     cellediting: {
-    // //        clicksToEdit: 2, // dblclick 으로 이벤트 validation 수행하기 위해 추가
-    // //         listeners: {
-    // //             //beforeedit: 'treeBeforeEdit',
-    // //             edit: 'treeEdit',
-    // //             canceledit: 'treeCancelEdit'
-    // //         }
-    //     }
-    // },
     
     columns: [
         {
             xtype: 'treecolumn',
             dataIndex: 'name',
             flex: 1,
-            editor: 'textfield'
+            editor: {
+                xtype :'textfield',
+                allowBlank: false,
+                listeners: {
+                    specialkey : function(field,event,eOpts){
+                        if(event.getKey() == event.TAB){
+                            
+                            Ext.Msg.alert('TAB');
+                        }else if(event.getKey() == event.ENTER){
+                            Ext.Msg.alert('ENTER');
+                        }
+                    } 
+                }
+            },
         },
     ],
 
@@ -35,14 +38,10 @@ Ext.define("EunjiClassic.view.second.lefttree.LeftTree",{
         cellediting: {
             clicksToEdit: 2,
             listeners: {
-
-                beforeedit: function(editor, context, eOpts){
-                    //debugger
-                },
-                // edit: 'treeEdit',
-                // canceledit: function (editor, context) {
-                //     if (context.record.crudState === 'C') context.record.remove();
-                // }
+                //beforeedit: 'gridBeforeEdit',
+                //canceledit: 'gridCancelEdit',
+                //validateedit: 'validateedit',
+                edit: 'treeEdit'
             }
         }
     },

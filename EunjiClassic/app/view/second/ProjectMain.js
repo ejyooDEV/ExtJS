@@ -1,7 +1,6 @@
 Ext.define('EunjiClassic.view.second.ProjectMain', {
     extend: 'Ext.panel.Panel',
     xtype: 'project-main',
-    title: '프로젝트 상세페이지',
     
     controller: 'project-main',
     viewModel: 'project-main',
@@ -15,6 +14,7 @@ Ext.define('EunjiClassic.view.second.ProjectMain', {
         {
             xtype: 'toolbar',
             region: 'north',
+            hidden: true,
             items: [
                 {
                     xtype: 'columnfilter',

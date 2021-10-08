@@ -8,27 +8,27 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
     nodeAppendChild:function(){
         // var vm = this.getViewModel();
         var view = this.getView();
-        // Ext.create("createnode",{
-        //     // viewModel:{
-        //     //     parent:vm
-        //     // },
-        //     treeModel: this.getView().getSelectionModel(),
-        // }).show();
-        // 플러그인 테스트 중..
         var model;
         var treeModel = this.getView().getSelectionModel();
         var selectedNode = treeModel.getSelection()[0];
+        var parentNode;
+        var store = this.getView().getStore();
 
         if(!selectedNode){
+            parentNode = view.getRootNode().id;
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
-                leaf: true
+                leaf: true,
+                parentNode: parentNode,
+                depth: selectedNode.data.depth
             });
             view.getRootNode().appendChild(model);
         }else{
+            debugger;
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
-                leaf: true
+                leaf: true,
+                parentNode: selectedNode.id
             });
             selectedNode.appendChild(model);
             if(!selectedNode.isExpanded())
@@ -37,11 +37,9 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         }
 
         view.setSelection(model); // 노드 선택
-        //this.setNewItemListSetting('Folder');  
         // setTimeout(function () { // 아이콘이 변하는 이벤트와 edit 플러그인 적용되는 시점  차 오류 발생
-            view.editingPlugin.startEdit(model,0);
+        view.editingPlugin.startEdit(model,0);
         // }, 100);
-
         //view.setLoading(false);
     },
     nocdRemoveChild:function(){
@@ -58,9 +56,25 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         //this.getView().getStore().load({node:parentNode}); // 해당 노드에 트리노드가 삽입된것 같이 적용됨.
     },
 
-    // 노드 더블클릭
-    treeEdit: function(editor, row){
-        console.log('test');
-    }
-
+    gridBeforeEdit:function(){
+        Ext.Msg.alert('gridBeforeEdit');
+    },
+    gridCancelEdit:function(){
+        Ext.Msg.alert('gridCancelEdit');
+    },
+    validateedit:function(){
+        Ext.Msg.alert('validateedit');
+    },
+    treeEdit:function(editor, e){
+        console.log("treeEdit..");
+        editor.view.getStore().save({
+            success: function (response) {
+                Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+                editor.view.getStore().reload();
+            },
+            failure: function (response) {
+                Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+            }
+        });
+    },
 });

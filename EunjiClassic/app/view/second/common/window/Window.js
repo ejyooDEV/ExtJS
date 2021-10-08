@@ -7,6 +7,7 @@ Ext.define("EunjiClassic.view.second.common.window.Window",{
     width:300,
     height:150,
     title:'New Node',
+    modal: true,
     items:[
         {
             xtype:'form',

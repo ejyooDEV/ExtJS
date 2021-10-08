@@ -12,6 +12,7 @@ Ext.define('EunjiClassic.view.window.Window', {
     width: 800,
     title: 'New Project',
     draggable: true,
+    modal: true,
     items: [
         {
             xtype: 'form',
@@ -46,6 +47,7 @@ Ext.define('EunjiClassic.view.window.Window', {
                     store: ['Ongoing', 'Planning', 'Postponed', 'Finished'],
                     name: 'status',
                     value: 'Ongoing',
+                    editable: false,
                     fieldLabel: 'Status'
                 }, {
                     xtype: 'textareafield',
@@ -58,6 +60,7 @@ Ext.define('EunjiClassic.view.window.Window', {
                     displayField: 'MenuTemplate',
                     name: 'menuTemplate',
                     value: 'SILKROAD Template',
+                    editable: false,
                     fieldLabel: 'MenuTemplate'
                 }, 
             ]

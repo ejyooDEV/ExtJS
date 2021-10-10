@@ -13,13 +13,15 @@ Ext.define('EunjiClassic.view.second.common.window.WindowController',{
         if(!selectedNode){
             model = new EunjiClassic.model.TreeStoreList({
                 name:title,
-                leaf:true
+                leaf: true,
+                //parentId: parentId.id
             });
             view.getRootNode().appendChild(model);
         }else{
             model = new EunjiClassic.model.TreeStoreList({
                 name:title,
-                leaf:true
+                leaf: true,
+                //parentId: parentId.id
             });
             selectedNode.appendChild(model);
             if(!selectedNode.isExpanded())

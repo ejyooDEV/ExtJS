@@ -6,29 +6,25 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
      * 노드 추가 버튼 클릭했을 때
      */
     nodeAppendChild:function(){
-        // var vm = this.getViewModel();
         var view = this.getView();
         var model;
         var treeModel = this.getView().getSelectionModel();
         var selectedNode = treeModel.getSelection()[0];
-        var parentNode;
-        var store = this.getView().getStore();
+        //var parentNode;
 
         if(!selectedNode){
-            parentNode = view.getRootNode().id;
+            //parentNode = view.getRootNode().id;
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
                 leaf: true,
-                parentNode: parentNode,
-                depth: selectedNode.data.depth
+                //parentId: parentNode.id
             });
             view.getRootNode().appendChild(model);
         }else{
-            debugger;
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
                 leaf: true,
-                parentNode: selectedNode.id
+                //parentId: selectedNode.id
             });
             selectedNode.appendChild(model);
             if(!selectedNode.isExpanded())
@@ -37,9 +33,9 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         }
 
         view.setSelection(model); // 노드 선택
-        // setTimeout(function () { // 아이콘이 변하는 이벤트와 edit 플러그인 적용되는 시점  차 오류 발생
+        setTimeout(function () { // 아이콘이 변하는 이벤트와 edit 플러그인 적용되는 시점  차 오류 발생
         view.editingPlugin.startEdit(model,0);
-        // }, 100);
+        }, 100);
         //view.setLoading(false);
     },
     nocdRemoveChild:function(){
@@ -47,7 +43,6 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         var treeModel = this.getView().getSelectionModel();
         var parentNode = treeModel.getLastSelected().parentNode;
         var childNode = treeModel.getLastSelected();
-        debugger;
         // tree.getRecord(childNode).remove(true);
         parentNode.removeChild(childNode);
         treeModel.deselectAll();
@@ -67,14 +62,15 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
     },
     treeEdit:function(editor, e){
         console.log("treeEdit..");
-        editor.view.getStore().save({
-            success: function (response) {
-                Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
-                editor.view.getStore().reload();
-            },
-            failure: function (response) {
-                Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
-            }
-        });
+        this.getView().getSelectionModel().getSelection()[0].commit()
+        // editor.view.getStore().save({
+        //     success: function (response) {
+        //         Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+        //         //editor.view.getStore().reload();
+        //     },
+        //     failure: function (response) {
+        //         Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+        //     }
+        // });
     },
 });

@@ -90,7 +90,6 @@ Ext.define('EunjiClassic.view.grid.Grid', {
             //     this.getStore().currentPage = 1;
             // },
             // moveNext: function (btn) {
-            //     debugger;
             //     this.getStore().currentPage++;
             //     store.reload();
             // },

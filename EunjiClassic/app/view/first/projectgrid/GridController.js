@@ -15,7 +15,6 @@ Ext.define('EunjiClassic.view.grid.GridController',{
         createProjectWindow.setTitle(title+" Project");
         createProjectWindow.down('form').loadRecord(record);
         createProjectWindow.show();
-        // debugger;
     },
 
     createProjectBtnClick : function(btn){ // createProject 클릭했을 때
@@ -49,13 +48,11 @@ Ext.define('EunjiClassic.view.grid.GridController',{
     
     // onProject : function(recordId){
     //     //EunjiClassic.view.page.ProjectList-1
-    //     debugger;
     //     console.log('ttt'+recordId);
     // }
 
     
     // refreshButton:function(pagingtoolbar,page){
-    //     debugger;
     // }
 
     // onButtonChange: function(segmentedbutton, button, isPressed, eOpts )  { // 버튼 클릭 시 title 변경

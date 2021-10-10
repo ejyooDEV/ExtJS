@@ -62,15 +62,16 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
     },
     treeEdit:function(editor, e){
         console.log("treeEdit..");
-        this.getView().getSelectionModel().getSelection()[0].commit()
-        // editor.view.getStore().save({
-        //     success: function (response) {
-        //         Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
-        //         //editor.view.getStore().reload();
-        //     },
-        //     failure: function (response) {
-        //         Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
-        //     }
-        // });
+        // this.getView().getSelectionModel().getSelection()[0].commit();
+        // debugger;
+        editor.view.getStore().save({
+            success: function (response) {
+                Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+                editor.view.getStore().reload();
+            },
+            failure: function (response) {
+                Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+            }
+        });
     },
 });

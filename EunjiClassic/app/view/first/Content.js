@@ -7,7 +7,7 @@ Ext.define('EunjiClassic.view.main.Content', {
         {
             xtype: 'toolbar',
             region: 'north',
-            flex:0.3,
+            flex:0.4,
             style:{
                 padding: '0 0 0 0',
                 backgroundColor:'#f6f6f6'
@@ -58,19 +58,19 @@ Ext.define('EunjiClassic.view.main.Content', {
             region: 'south',
             border: true,
             layout: 'border',
-            flex: 1,
+            flex: 2,
             items: [
                 {
                     xtype: 'panel',
                     region: 'west',
                     border: true,
-                    flex: 2,
+                    flex: 6,
                     title: 'board'
                 }, {
                     xtype: 'panel',
                     region: 'center',
                     border: true,
-                    flex: 1,
+                    flex: 2,
                     title: 'Notice',
                 }
             ]

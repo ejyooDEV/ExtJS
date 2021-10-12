@@ -1,0 +1,30 @@
+{
+  "children": [
+    {
+      "id": "TreeStoreList-1",
+      "name": "New Child1",
+      "leaf": false,
+      "parentId": "root",
+      "depthLevel": null,
+      "children": [
+        {
+          "id": "TreeStoreList-2",
+          "name": "New Child2",
+          "leaf": false,
+          "parentId": "TreeStoreList-1",
+          "depthLevel": null,
+          "children": [
+            {
+              "id": "TreeStoreList-3",
+              "name": "New Child3",
+              "leaf": true,
+              "parentId": "TreeStoreList-2",
+              "depthLevel": null,
+              "children": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

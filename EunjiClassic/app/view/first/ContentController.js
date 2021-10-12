@@ -40,6 +40,7 @@ Ext.define('EunjiClassic.view.main.ContentController', {
         vm.set('projectType', buttonText);// title change
         store.load({
             params: {
+                page: 1,
                 status: buttonText
             },
             //callback: function(records, operation, success) { },

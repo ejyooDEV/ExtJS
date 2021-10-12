@@ -21,8 +21,6 @@ Ext.define('EunjiClassic.store.TreeStoreList',{
         url:'./resources/data/LeftMenu.json',
         reader:{
             type:'json',
-            //rootProperty:'children'
-            //rootProperty:'root'
         },
         timeout: 60* 1000 * 60
     },  

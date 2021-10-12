@@ -10,21 +10,21 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         var model;
         var treeModel = this.getView().getSelectionModel();
         var selectedNode = treeModel.getSelection()[0];
-        //var parentNode;
+        var parentNode;
 
         if(!selectedNode){
-            //parentNode = view.getRootNode().id;
+            parentNode = view.getRootNode().id;
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
-                leaf: true,
-                //parentId: parentNode.id
+                leaf: true, //true : 하위 노드 생성(아이콘 + 없음) , false : 하위 노드 생성(아이콘 + 있음)
+                parentId: parentNode.id
             });
             view.getRootNode().appendChild(model);
         }else{
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
                 leaf: true,
-                //parentId: selectedNode.id
+                parentId: selectedNode.id
             });
             selectedNode.appendChild(model);
             if(!selectedNode.isExpanded())
@@ -51,27 +51,19 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         //this.getView().getStore().load({node:parentNode}); // 해당 노드에 트리노드가 삽입된것 같이 적용됨.
     },
 
-    gridBeforeEdit:function(){
-        Ext.Msg.alert('gridBeforeEdit');
-    },
-    gridCancelEdit:function(){
-        Ext.Msg.alert('gridCancelEdit');
-    },
-    validateedit:function(){
-        Ext.Msg.alert('validateedit');
-    },
     treeEdit:function(editor, e){
         console.log("treeEdit..");
-        // this.getView().getSelectionModel().getSelection()[0].commit();
+        Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+        this.getView().getSelectionModel().getSelection()[0].commit();
         // debugger;
-        editor.view.getStore().save({
-            success: function (response) {
-                Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
-                editor.view.getStore().reload();
-            },
-            failure: function (response) {
-                Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
-            }
-        });
+        // editor.view.getStore().save({
+        //     success: function (response) {
+        //         Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+        //         //editor.view.getStore().reload();
+        //     },
+        //     failure: function (response) {
+        //         Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+        //     }
+        // });
     },
 });

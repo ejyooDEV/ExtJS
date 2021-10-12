@@ -31,7 +31,7 @@ Ext.define('EunjiClassic.view.grid.Grid', {
             }]
         },
         {
-            text: 'Title', align: 'center', flex: 2, dataIndex: 'title',
+            text: 'Title', align: 'left', flex: 2, dataIndex: 'title',
             editor: {
                 xtype: 'textfield',
                 allowBlank: false,
@@ -39,7 +39,7 @@ Ext.define('EunjiClassic.view.grid.Grid', {
             }
         },
         {
-            text: 'StartDate', align: 'center', flex: 2, dataIndex: 'startDate', format: 'Y-m-d',
+            text: 'StartDate', align: 'center', flex: 1, dataIndex: 'startDate', format: 'Y-m-d',
             xtype:'datecolumn',
             editor: {
                 xtype: 'datefield',
@@ -48,13 +48,13 @@ Ext.define('EunjiClassic.view.grid.Grid', {
         },
         {
             text: 'Period',
-            style: 'text-align:center',
+            align: 'center',
             flex: 1,
             dataIndex: 'period',
             renderer: 'getPeriodRender'
         },
         {
-            text: 'Status', style: 'text-align:center', flex: 1, dataIndex: 'status',
+            text: 'Status', align: 'center', flex: 1, dataIndex: 'status',
             editor: {
                 xtype: 'combobox',
                 allowBlank: false,
@@ -63,7 +63,7 @@ Ext.define('EunjiClassic.view.grid.Grid', {
             }
         },
         {
-            text: 'Description', style: 'text-align:center', flex: 1, dataIndex: 'description',
+            text: 'Description', align: 'left', flex: 1, dataIndex: 'description',
             editor: {
                 xtype: 'textareafield',
                 allowBlank: false,

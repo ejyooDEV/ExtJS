@@ -17,6 +17,21 @@ Ext.define('EunjiClassic.view.second.common.window.WindowController',{
                 //parentId: parentId.id
             });
             view.getRootNode().appendChild(model);
+            
+            // treeEdit:function(editor, e){
+            //     console.log("treeEdit..");
+            //     // this.getView().getSelectionModel().getSelection()[0].commit();
+            //     // debugger;
+            //     editor.view.getStore().save({
+            //         success: function (response) {
+            //             Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+            //             editor.view.getStore().reload();
+            //         },
+            //         failure: function (response) {
+            //             Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+            //         }
+            //     });
+            // },
         }else{
             model = new EunjiClassic.model.TreeStoreList({
                 name:title,

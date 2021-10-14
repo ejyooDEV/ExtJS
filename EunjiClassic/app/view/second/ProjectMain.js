@@ -5,7 +5,7 @@ Ext.define('EunjiClassic.view.second.ProjectMain', {
     controller: 'project-main',
     viewModel: 'project-main',
 
-    id: null,
+    record_id: null,
     layout: 'border',
     listeners: {
         afterrender: 'onProjectMain'
@@ -14,7 +14,6 @@ Ext.define('EunjiClassic.view.second.ProjectMain', {
         {
             xtype: 'toolbar',
             region: 'north',
-            hidden: true,
             items: [
                 {
                     xtype: 'columnfilter',

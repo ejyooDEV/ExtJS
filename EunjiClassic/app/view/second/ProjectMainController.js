@@ -3,7 +3,7 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
     alias: 'controller.project-main',
 
     onProjectMain:function(){},
-    /*
+    
     init:function(){
         var me = this;
         var vm = this.getViewModel();
@@ -12,7 +12,7 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
             url:"https://localhost:5001/projectList/getSampleData",
             method: 'GET', // ajax 통신 시 메소드 꼭 지정
             params:{
-                Id: this.getView().id,
+                Id: this.getView().record_id,
                 Status: this.getView().status
             }, // 보통 Read는 GET 방식으로 처리함. 이렇게 사용하면 서버단에서 string ProjectId로 받을 수 있음.
             //jsonData: {
@@ -48,5 +48,5 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
             }
         });
     }
-    */
+    
 });

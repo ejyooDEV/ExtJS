@@ -17,7 +17,4 @@ Ext.define('EunjiClassic.model.ProjectList', {
             }
         }
     ],
-    //idProperty: 'projectID',
-    //clientIdProperty: 'clientID' // parent id와 clientid(server에서 사용)아이디 분리하기 위한 작업
-
 });

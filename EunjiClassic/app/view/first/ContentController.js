@@ -57,7 +57,7 @@ Ext.define('EunjiClassic.view.main.ContentController', {
         //this.getView().down('projectGridList').removeAll(); //projectGridList내 아이템만 지울 때
         appMain.remove(this.getView()); // mainview에서 해당 프로젝트 아이템이 속한 영역을 삭제할 때(부모에서 자식요소 삭제)
 
-        appMain.add({ xtype: 'project-main', region: 'center', id: record.data.id, status: record.data.status});
+        appMain.add({ xtype: 'project-main', region: 'center', record_id: record.data.id, status: record.data.status});
         
         //Ext.getApplication().redirectTo('project/'+record.id); // url만 변경해줌
         //this.clearMainView().setMainView('EunjiClassic.view.page.'+record.id);

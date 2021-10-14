@@ -9,6 +9,16 @@ Ext.define('EunjiClassic.view.window.Window', {
     ],
 
     controller: 'projectWindow',
+    viewModel: {
+        data: {
+            mode:"create",
+        },
+        formulas: {
+            windowStatus: function(get){
+                return get('mode') == "create";
+            }
+        }
+    },
     width: 800,
     title: 'New Project',
     draggable: true,
@@ -75,7 +85,10 @@ Ext.define('EunjiClassic.view.window.Window', {
         },{
             text:'Delete',
             handler:'onDeleteClick',
-            formBind:true
+            formBind:true,
+            bind: {
+                hidden: '{windowStatus}'
+            }
         }]
 
 });

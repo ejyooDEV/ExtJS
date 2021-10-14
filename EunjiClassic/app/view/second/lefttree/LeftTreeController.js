@@ -41,8 +41,8 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
     nocdRemoveChild:function(){
         var tree = this.getView().getView(); //'Ext.tree.View'
         var treeModel = this.getView().getSelectionModel();
-        var parentNode = treeModel.getLastSelected().parentNode;
-        var childNode = treeModel.getLastSelected();
+        var parentNode = treeModel.getSelection()[0].parentNode;
+        var childNode = treeModel.getSelection()[0];
         // tree.getRecord(childNode).remove(true);
         parentNode.removeChild(childNode);
         treeModel.deselectAll();
@@ -55,13 +55,13 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         console.log("treeEdit..");
         Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
         this.getView().getSelectionModel().getSelection()[0].commit();
-        // debugger;
+        debugger;
         // editor.view.getStore().save({
         //     success: function (response) {
         //         Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
         //         //editor.view.getStore().reload();
         //     },
-        //     failure: function (response) {
+        //     failure: function (respsonse) {
         //         Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
         //     }
         // });

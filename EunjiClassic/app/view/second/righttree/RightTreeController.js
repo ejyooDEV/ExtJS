@@ -19,8 +19,8 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController',{
     nocdRemoveChild:function(){
         var tree = this.getView().getView();
         var treeModel = this.getView().getSelectionModel();
-        var parentNode = treeModel.getLastSelected().parentNode;
-        var childNode = treeModel.getLastSelected();
+        var parentNode = treeModel.getSelection()[0].parentNode;
+        var childNode = treeModel.getSelection()[0];
         parentNode.removeChild(childNode);
         parentNode.commit();
         //this.getView().getStore().load({node:parentNode}); // 해당 노드에 트리노드가 삽입된것 같이 적용됨.

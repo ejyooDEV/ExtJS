@@ -1,41 +1,47 @@
 {
   "children":[
     {
-      "name": "사용자",
-      "url": "",
+      "name": "SILKROAD FOLDER1",
       "leaf": false,
       "children":[{
-        "name": "사용자 조회",
-        "url": "EunjiClassic.view.user.UserShow",
+        "name": "개발 계획",
         "leaf": true
       },{
-        "name": "사용자 목록조회",
-        "url": "EunjiClassic.view.user.UserShowList",
+        "name": "요구사항 분석",
         "leaf": true
       },{
-        "name": "사용자 등록",
-        "url": "EunjiClassic.view.user.UserReg",
+        "name": "설계",
         "leaf": true
       },{
-        "name": "사용자 변경",
-        "url": "EunjiClassic.view.user.UserUpd",
+        "name": "개발계획",
+        "leaf": true
+      },{
+        "name": "요구사항 분석",
+        "leaf": true
+      },{
+        "name": "아키텍쳐 설계",
+        "leaf": true
+      },{
+        "name": "단위설계",
+        "leaf": true
+      },{
+        "name": "구현",
         "leaf": true
       }]
     },{
-      "name": "메뉴",
-      "url": "",
+      "name": "SILKROAD FOLDER2",
       "leaf": false,
       "children": [{
-        "name": "메뉴1",
-        "url": "...",
+        "name": "단위 시험",
         "leaf": true
       },{
-        "name": "메뉴2",
-        "url": "...",
+        "name": "통합 시험",
         "leaf": true
       },{
-        "name": "메뉴3",
-        "url": "...",
+        "name": "시스템 시험",
+        "leaf": true
+      },{
+        "name": "릴리즈",
         "leaf": true
       }]
     }]

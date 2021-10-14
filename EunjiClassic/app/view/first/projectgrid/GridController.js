@@ -4,10 +4,14 @@ Ext.define('EunjiClassic.view.grid.GridController',{
     alias: 'controller.projectgrid',
     
     onInformationIconClick: function(grid, rowIndex, colIndex){ // 정보아이콘 클릭했을 때
+        var vm = this.getViewModel();
         var record             = grid.getStore().getAt(rowIndex);
         var title           = record.getData().title;
 
         var createProjectWindow = Ext.create("createProject",{
+            viewModel:{
+                parent:vm
+            },
             mode: "read",
             record: record
         });

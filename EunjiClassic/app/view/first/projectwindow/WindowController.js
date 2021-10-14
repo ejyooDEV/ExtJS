@@ -3,10 +3,13 @@ Ext.define('EunjiClassic.view.window.WindowController', {
 
     alias: 'controller.projectWindow',
 
+    init:function(){
+        this.getViewModel().set("mode",this.getView().mode);
+    },
     onAddClick: function (btn) {
         var form = btn.up('window').down('form');
         var formValues = form.getValues();
-        var store = this.getViewModel().getStore('gridstore');
+        var store = this.getViewModel().get('gridstore');
         var windowFlag = btn.up('window').mode;
 
         if (windowFlag == 'read') { // 수정
@@ -49,7 +52,7 @@ Ext.define('EunjiClassic.view.window.WindowController', {
     },
 
     onDeleteClick: function (btn) {
-        var store = this.getViewModel().getStore('gridstore');
+        var store = this.getViewModel().get('gridstore');
         var record = btn.up('window').record;
 
         store.remove(record);

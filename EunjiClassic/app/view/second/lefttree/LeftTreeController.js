@@ -13,14 +13,16 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         var parentNode;
 
         if(!selectedNode){
-            parentNode = view.getRootNode().id;
+            //parentNode = view.getRootNode().id;
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
                 leaf: true, //true : 하위 노드 생성(아이콘 + 없음) , false : 하위 노드 생성(아이콘 + 있음)
-                parentId: parentNode.id
             });
             view.getRootNode().appendChild(model);
+            model.set("parentId",0);
             view.getRootNode().commit();
+            
+            
         }else{
             model = new EunjiClassic.model.TreeStoreList({
                 name: 'New Child',
@@ -43,22 +45,30 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController',{
         var tree = this.getView().getView(); //'Ext.tree.View'
         var treeModel = this.getView().getSelectionModel();
         var parentNode = treeModel.getSelection()[0].parentNode;
-        var childNode = treeModel.getSelection()[0];
-        // tree.getRecord(childNode).remove(true);
-        parentNode.removeChild(childNode);
-        treeModel.deselectAll();
-        console.log(childNode);
+        var child_record = treeModel.getSelection()[0]; // record
+        debugger;
+        this.getView().getStore().remove(child_record);
+        this.getView().getStore().sync({
+            success:function(){
+                Ext.Msg.alert('Success', '정상적으로 삭제되었습니다.');
+            },
+            failure:function(){
+                Ext.Msg.alert('Failed', '삭제 실패하였습니다.');
+            }
+        });
+        // parentNode.removeChild(child_record);
+        // treeModel.deselectAll();
+        
         // parentNode.removeChild(childNode); // BufferedRenderer#scrollTo error 발생!
         //this.getView().getStore().load({node:parentNode}); // 해당 노드에 트리노드가 삽입된것 같이 적용됨.
     },
 
     treeEdit:function(editor, e){
-        editor.view.getStore().save({
-            success: function (response) {
+        editor.view.getStore().sync({
+            success: function (batch,options) {
                 Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
-                //editor.view.getStore().reload();
             },
-            failure: function (respsonse) {
+            failure: function (batch,options) {
                 Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
             }
         });

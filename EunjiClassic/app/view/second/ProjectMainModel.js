@@ -6,7 +6,7 @@ Ext.define('EunjiClassic.view.second.ProjectMainModel',{
 
     stores:{
         leftstore:{
-            type:'treestorelist'
+            type:'treestorelist',
         },
         rightstore:{
             type:'treestorelist'

@@ -19,8 +19,12 @@ Ext.define('EunjiClassic.store.TreeStoreList',{
             destory: "https://localhost:5001/projectTreeList/removeTreeNode",
         },
         //url:'./resources/data/LeftMenu.json',
-        reader:{
-            type:'json',
+        // reader:{
+        //     type:'json',
+        // },
+        writer:{
+            //type: 'json',
+            clientIdProperty: 'clientId'
         },
         timeout: 60* 1000 * 60
     },  

@@ -47,6 +47,8 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
                 console.log('err');
             }
         });
+        
+        
     }
     
 });

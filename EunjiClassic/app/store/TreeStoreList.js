@@ -3,7 +3,7 @@ Ext.define('EunjiClassic.store.TreeStoreList',{
     alias:'store.treestorelist',
 
     model: 'EunjiClassic.model.TreeStoreList',
-    autoload:true,
+    autoload:false,
     proxy:{
         type:'ajax',
         actionMethod:{
@@ -13,10 +13,10 @@ Ext.define('EunjiClassic.store.TreeStoreList',{
             destory: 'POST'
         },
         api:{
-            create:"https://localhost:5001/projectTreeList/setTreeNode",
-            read: "https://localhost:5001/projectTreeList/getTreeNodeAll",
-            update: "https://localhost:5001/projectTreeList/modifyTreeNode",
-            destory: "https://localhost:5001/projectTreeList/removeTreeNode",
+            create:"https://localhost:5001/projectTreeList/createTreeNode",
+            read: "https://localhost:5001/projectTreeList/readAllTreeNode",
+            update: "https://localhost:5001/projectTreeList/updateTreeNode",
+            destroy: "https://localhost:5001/projectTreeList/destroyTreeNode",
         },
         //url:'./resources/data/LeftMenu.json',
         // reader:{
@@ -26,6 +26,9 @@ Ext.define('EunjiClassic.store.TreeStoreList',{
             //type: 'json',
             clientIdProperty: 'clientId'
         },
-        timeout: 60* 1000 * 60
+        timeout: 60* 1000 * 60,
+
+        
     },  
+    
 });

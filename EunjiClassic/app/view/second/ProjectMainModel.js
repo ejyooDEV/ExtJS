@@ -7,9 +7,19 @@ Ext.define('EunjiClassic.view.second.ProjectMainModel',{
     stores:{
         leftstore:{
             type:'treestorelist',
+            proxy:{
+                extraParams:{
+                    mode: 'left'
+                }
+            }
         },
         rightstore:{
-            type:'treestorelist'
+            type:'treestorelist',
+            proxy:{
+                extraParams:{
+                    mode: 'right'
+                }
+            }
         }
     }
 });

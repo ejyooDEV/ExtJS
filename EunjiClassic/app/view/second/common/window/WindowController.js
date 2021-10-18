@@ -1,49 +1,47 @@
 Ext.define('EunjiClassic.view.second.common.window.WindowController',{
     extend: 'Ext.app.ViewController',
     alias:'controller.nodewindow',
-
+    init:function(){
+        console.log(this.getViewModel());
+        
+    },
     onAddClick: function(btn){
         var view = this.getView().treeView;
         var treeModel = this.getView().treeModel;
         var form = btn.up('window').down('form');
         var title = form.getValues().title;
-        var selectedNode = treeModel.getSelection()[0];
+        var selectRecord = treeModel.getSelection()[0];
+        var store = this.getViewModel().get('rightstore');
 
-        var model;
-        if(!selectedNode){
-            model = new EunjiClassic.model.TreeStoreList({
-                name:title,
-                leaf: true,
-                //parentId: parentId.id
-            });
-            view.getRootNode().appendChild(model);
-            
-            // treeEdit:function(editor, e){
-            //     console.log("treeEdit..");
-            //     // this.getView().getSelectionModel().getSelection()[0].commit();
-            //     // debugger;
-            //     editor.view.getStore().save({
-            //         success: function (response) {
-            //             Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
-            //             editor.view.getStore().reload();
-            //         },
-            //         failure: function (response) {
-            //             Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
-            //         }
-            //     });
-            // },
-        }else{
-            model = new EunjiClassic.model.TreeStoreList({
-                name:title,
-                leaf: true,
-                //parentId: parentId.id
-            });
-            selectedNode.appendChild(model);
-            if(!selectedNode.isExpanded())
-            selectedNode.expand();
-            selectedNode.commit();
+        selectRecord ? selectRecord = selectRecord : selectRecord = view.getRootNode();
+
+        var model = new EunjiClassic.model.TreeStoreList({
+            name: title,
+            leaf: true,
+            mode: 'right'
+        });
+        //client 처리
+        selectRecord.appendChild(model);
+
+        if(selectRecord.id == "root"){
+            model.set("parentId", 0);
         }
+
+        if (!selectRecord.isExpanded())
+           selectRecord.expand();
+
         view.setSelection(model);
+
+        store.sync({
+            success: function (batch, options) {
+                Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
+                store.reload();
+            },
+            failure: function (batch, options) {
+                Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+            }
+        });
+
         btn.up('window').close();
     },
     onCloseClick:function(btn){

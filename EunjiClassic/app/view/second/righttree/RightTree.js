@@ -30,6 +30,11 @@ Ext.define("EunjiClassic.view.second.righttree.RightTree",{
     header:{
         itemPosition:1,
         items:[{
+            xtype: 'button',
+            iconCls: 'fas fa-redo-alt',
+            handler: 'onTreeRefresh',
+            html: '&nbsp;&nbsp;새로고침'
+        },{
             xtype:'button',
             text:'노드추가',
             handler:'nodeAppendChild'

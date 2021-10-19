@@ -68,7 +68,15 @@ Ext.define("EunjiClassic.view.second.lefttree.LeftTree",{
         }]
     },
     
-    //listeners:{
-        //select:'onMenuClick'
-    //}
+    viewConfig: {
+        plugins: {
+            ptype: 'treeviewdragdrop',
+            ddGroup: 'selDD',
+            dragGroup: 'selDD'
+        },
+        copy: false,
+        listeners: {
+            drop: 'onDropLeft'
+        }
+    }
 });

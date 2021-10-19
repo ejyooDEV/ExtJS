@@ -49,6 +49,32 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
         });
         
         
+    },
+
+    dragDropEvent: function(data,mode){
+        var vm = this.getViewModel();
+        var json = new Object;
+        
+        Ext.each(data.records, function(record){
+            json.id = record.get("id");
+            json.parentId = record.get("parentId");
+            console.log(json);
+        });
+        Ext.Ajax.request({
+            url:"https://localhost:5001/projectTreeList/moveUpdateTreeNode",
+            method: 'POST',
+            params:{
+                mode: mode
+            },
+            jsonData: Ext.encode(json),
+            success: function(oper, request){
+                vm.get('leftstore').reload();
+                vm.get('rightstore').reload();
+            },
+            failure: function(result, request){
+                console.log("실패");
+            }
+        });
     }
     
 });

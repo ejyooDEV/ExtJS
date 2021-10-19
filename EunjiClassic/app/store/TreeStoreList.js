@@ -27,7 +27,7 @@ Ext.define('EunjiClassic.store.TreeStoreList',{
             clientIdProperty: 'clientId'
         },
         timeout: 60* 1000 * 60,
-
+        
         
     },  
     

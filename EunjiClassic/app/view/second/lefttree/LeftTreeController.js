@@ -45,13 +45,14 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
         store.sync({
             success: function () {
                 Ext.Msg.alert('Success', '정상적으로 삭제되었습니다.');
+                store.reload();
             },
             failure: function () {
                 Ext.Msg.alert('Failed', '삭제 실패하였습니다.');
+                store.reload();
             }
         });
         treeModel.deselectAll();
-        // parentNode.removeChild(child_record);
         //this.getView().getStore().load({node:parentNode}); // 해당 노드에 트리노드가 삽입된것 같이 적용됨.
     },
 

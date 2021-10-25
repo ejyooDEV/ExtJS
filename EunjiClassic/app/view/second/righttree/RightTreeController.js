@@ -17,11 +17,23 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController', {
         }).show();
     },
     nocdRemoveChild: function () {
-        var tree = this.getView().getView();
+        //var tree = this.getView().getView();
         var treeModel = this.getView().getSelectionModel();
         var parentNode = treeModel.getSelection()[0].parentNode;
-        var childNode = treeModel.getSelection()[0];
-        parentNode.removeChild(childNode);
+        var child_record = treeModel.getSelection()[0];
+        var store = this.getViewModel().get('rightstore');
+        parentNode.removeChild(child_record);
+        store.sync({
+            success: function () {
+                Ext.Msg.alert('Success', '정상적으로 삭제되었습니다.');
+                store.reload();
+            },
+            failure: function () {
+                Ext.Msg.alert('Failed', '삭제 실패하였습니다.');
+                store.reload();
+            }
+        });
+        treeModel.deselectAll();
         //this.getView().getStore().load({node:parentNode}); // 해당 노드에 트리노드가 삽입된것 같이 적용됨.
     },
 

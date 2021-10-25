@@ -6,14 +6,14 @@ Ext.define('EunjiClassic.view.second.common.window.WindowController',{
         
     },
     onAddClick: function(btn){
-        var view = this.getView().treeView;
+        var treeView = this.getView().treeView;
         var treeModel = this.getView().treeModel;
         var form = btn.up('window').down('form');
         var title = form.getValues().title;
         var selectRecord = treeModel.getSelection()[0];
         var store = this.getViewModel().get('rightstore');
 
-        selectRecord ? selectRecord = selectRecord : selectRecord = view.getRootNode();
+        selectRecord ? selectRecord = selectRecord : selectRecord = treeView.getRootNode();
 
         var model = new EunjiClassic.model.TreeStoreList({
             name: title,
@@ -30,7 +30,7 @@ Ext.define('EunjiClassic.view.second.common.window.WindowController',{
         if (!selectRecord.isExpanded())
            selectRecord.expand();
 
-        view.setSelection(model);
+           treeView.setSelection(model);
 
         store.sync({
             success: function (batch, options) {
@@ -39,6 +39,7 @@ Ext.define('EunjiClassic.view.second.common.window.WindowController',{
             },
             failure: function (batch, options) {
                 Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+                store.reload();
             }
         });
 

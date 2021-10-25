@@ -11,6 +11,8 @@ Ext.define("EunjiClassic.view.second.righttree.RightTree",{
     bind: {
         store: '{rightstore}', // ProjectMainModel.js 내 bind data
     },
+
+    multiSelect: true,
     
     columns: [
         {
@@ -53,6 +55,7 @@ Ext.define("EunjiClassic.view.second.righttree.RightTree",{
         },
         copy: false,
         listeners: {
+            beforedrop : 'onDropDepthCheck',
             drop: 'onDropRight'
         }
     }

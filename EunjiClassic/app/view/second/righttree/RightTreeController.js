@@ -47,5 +47,9 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController', {
      */
     onDropRight : function(node, data, overModel, dropPosition, eOpts){
         this.getView().up('project-main').getController().dragDropEvent(data,"right");
+    },
+
+    onDropDepthCheck: function (node, data, overModel, dropPosition, dropHandlers, eOpts) {
+        this.getView().up('project-main').getController().dropDepthCheck(data,dropHandlers);
     }
 });

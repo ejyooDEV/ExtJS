@@ -53,12 +53,13 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
 
     dragDropEvent: function(data,mode){
         var vm = this.getViewModel();
-        var json = new Object;
+        var nodeList = [];
         
         Ext.each(data.records, function(record){
+            var json = new Object;
             json.id = record.get("id");
             json.parentId = record.get("parentId");
-            console.log(json);
+            nodeList.push(json);
         });
         Ext.Ajax.request({
             url:"https://localhost:5001/projectTreeList/moveUpdateTreeNode",
@@ -66,15 +67,32 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
             params:{
                 mode: mode
             },
-            jsonData: Ext.encode(json),
+            jsonData: Ext.encode(nodeList),
             success: function(oper, request){
-                vm.get('leftstore').reload();
-                vm.get('rightstore').reload();
+                if(mode=='left')
+                    vm.get('leftstore').reload();
+                else if(mode=='right')
+                    vm.get('rightstore').reload();
             },
             failure: function(result, request){
                 console.log("실패");
             }
         });
+    },
+
+    dropDepthCheck: function(data,dropHandlers){ // depth가 다를 경우 이동 불가 처리 코드
+        var _records = data.records;
+        var flag = false;
+
+        for (var i = 0; i < _records.length - 1; i++) {
+            for (var j = i + 1; j < _records.length; j++) {
+                if (_records[i].data.depth != _records[j].data.depth) {
+                    flag = true;
+                }
+            }
+        }
+
+        if (flag) 
+            dropHandlers.cancelDrop();
     }
-    
 });

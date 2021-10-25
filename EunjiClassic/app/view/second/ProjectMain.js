@@ -14,9 +14,11 @@ Ext.define('EunjiClassic.view.second.ProjectMain', {
         {
             xtype: 'toolbar',
             region: 'north',
+            hidden: true,
             items: [
                 {
                     xtype: 'columnfilter',
+                    
                 }
             ]
         },

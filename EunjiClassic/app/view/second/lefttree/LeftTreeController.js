@@ -64,6 +64,7 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
             },
             failure: function (batch, options) {
                 Ext.Msg.alert('Failed', "데이터 저장이 실패하였습니다.");
+                store.reload();
             }
         });
     },
@@ -90,5 +91,9 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
      */
     onDropLeft: function(node, data, overModel, dropPosition, eOpts){
         this.getView().up('project-main').getController().dragDropEvent(data,"left");
+    },
+
+    onDropDepthCheck: function (node, data, overModel, dropPosition, dropHandlers, eOpts) {
+        this.getView().up('project-main').getController().dropDepthCheck(data,dropHandlers);
     }
 });

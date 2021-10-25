@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Class.cs" />
+    <Compile Remove="Controllers\ProjectListController.cs" />
+    <Compile Remove="Controllers\TreeListController - 복사%282%29.cs" />
+    <Compile Remove="Controllers\TreeListController - 복사.cs" />
+    <Compile Remove="Models\Class.cs" />
+    <Compile Remove="Models\Sample.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="Rick.Docs.Samples.RouteInfo" Version="1.0.0*" />

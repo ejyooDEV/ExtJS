@@ -96,11 +96,14 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
             dropHandlers.cancelDrop();
     },
 
-    setExpanded: function(jsonData){
+    setExpanded: function(id,expanded){
+        var json = new Object;
+        json.id = id;
+        json.expanded = expanded;
         Ext.Ajax.request({
             url: "https://localhost:5001/projectTreeList/setExpanded",
             method: "POST",
-            jsonData: Ext.encode(jsonData),
+            jsonData: Ext.encode(json),
             success: function(result,request){},
             failure: function(result,request){},
         });

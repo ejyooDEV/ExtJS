@@ -99,16 +99,14 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
     },
 
     onExpanded: function ( node, index, item, eOpts ) {
-        var jsonData = new Object;
-        jsonData.id = node.data.id;
-        jsonData.expanded = true;
-        this.getView().up('project-main').getController().setExpanded(jsonData);
+        var id = node.data.id;
+        var expanded = true;
+        this.getView().up('project-main').getController().setExpanded(id,expanded);
     },
-    
+
     onCollapse: function ( node, index, item, eOpts ) {
-        var jsonData = new Object;
-        jsonData.id = node.data.id;
-        jsonData.expanded = false;
-        this.getView().up('project-main').getController().setExpanded(jsonData);
+        var id = node.data.id;
+        var expanded = false;
+        this.getView().up('project-main').getController().setExpanded(id,expanded);
     }
 });

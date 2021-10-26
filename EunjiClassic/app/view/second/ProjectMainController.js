@@ -94,5 +94,15 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
 
         if (flag) 
             dropHandlers.cancelDrop();
+    },
+
+    setExpanded: function(jsonData){
+        Ext.Ajax.request({
+            url: "https://localhost:5001/projectTreeList/setExpanded",
+            method: "POST",
+            jsonData: Ext.encode(jsonData),
+            success: function(result,request){},
+            failure: function(result,request){},
+        });
     }
 });

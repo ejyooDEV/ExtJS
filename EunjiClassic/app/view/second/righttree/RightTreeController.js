@@ -63,5 +63,19 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController', {
 
     onDropDepthCheck: function (node, data, overModel, dropPosition, dropHandlers, eOpts) {
         this.getView().up('project-main').getController().dropDepthCheck(data,dropHandlers);
+    },
+
+    onExpanded: function(node, index, item, eOpts){
+        var jsonData = new Object;
+        jsonData.id = node.data.id;
+        jsonData.expanded = true;
+        this.getView().up('project-main').getController().setExpanded(jsonData);
+    },
+
+    onCollapse: function(node, index, items, eOpts){
+        var jsonData = new Object;
+        jsonData.id = node.data.id;
+        jsonData.expanded = false;
+        this.getView().up('project-main').getController().setExpanded(jsonData);
     }
 });

@@ -81,5 +81,10 @@ Ext.define("EunjiClassic.view.second.lefttree.LeftTree",{
             beforedrop : 'onDropDepthCheck',
             drop: 'onDropLeft'
         }
+    },
+
+    listeners: {
+        afteritemexpand: 'onExpanded',
+        afteritemcollapse: 'onCollapse'
     }
 });

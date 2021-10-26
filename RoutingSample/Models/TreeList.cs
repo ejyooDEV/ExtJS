@@ -26,6 +26,12 @@ namespace RoutingSample.Models
         public int ClientId { get; set; }
 
         /* mode */
-        public string mode { get; set; }
+        public string Mode { get; set; }
+
+        public bool IsDelete { get; set; } = false;
+
+        public bool Expanded { get; set; }
+
+        public string Index { get; set; } = "";
     }
 }

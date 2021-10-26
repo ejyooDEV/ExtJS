@@ -58,7 +58,7 @@ namespace RoutingSample.Controllers
             {
                 return new List<TreeList>();
             }
-            var statusTreeList  = sampleList.Where((row) => row.mode.Equals(mode));
+            var statusTreeList  = sampleList.Where((row) => row.Mode.Equals(mode) && row.IsDelete == false);
             var lookup          = statusTreeList.ToLookup((row) => row.ParentId);
 
             foreach (var statusTree in statusTreeList)
@@ -110,7 +110,7 @@ namespace RoutingSample.Controllers
         }
 
         [HttpPost("destroyTreeNode")]
-        public Object RemoveTreeNode(Dictionary<String, Object> data)
+        public String RemoveTreeNode(Dictionary<String, Object> data)
         {
             // 캐쉬 가져와서
             var cacheKey = "ProjectTreeStore";
@@ -119,11 +119,16 @@ namespace RoutingSample.Controllers
                 sampleList = new List<TreeList>();
 
             string _id = data["id"].ToString();
-            //var removeObject = sampleList.Where((row) => row.Id.ToString() == _id).FirstOrDefault();
-            var removeObjectCnt = sampleList.RemoveAll((row) => row.Id.ToString() == _id);
-            _cache.Set(cacheKey, sampleList);
-            var readAllObject = sampleList.ToList();
-            return new {removeRecordCnt = removeObjectCnt};
+            var removeObject = sampleList.Where((row) => row.Id.ToString() == _id).FirstOrDefault();
+            removeObject.IsDelete = true;
+            //var removeObjectCnt = sampleList.RemoveAll((row) => row.Id.ToString() == _id);
+            //_cache.Set(cacheKey, sampleList);
+            //var readAllObject = sampleList.ToList();
+
+            var parentId = removeObject.ParentId;
+            updateParentLeaf(parentId);
+
+            return "Success";
         }
 
         [HttpPost("moveUpdateTreeNode")]
@@ -149,7 +154,7 @@ namespace RoutingSample.Controllers
                     else
                         dragNode.ParentId = int.Parse(data["parentId"].ToString()); // 변경하려던 node로 변경
 
-                    dragNode.mode = mode; // 상태 변경
+                    dragNode.Mode = mode; // 상태 변경
 
                     updateModeOfChildNode(dragNode);
                 }
@@ -162,23 +167,45 @@ namespace RoutingSample.Controllers
                 {
                     foreach (var childNode in childrenNode)
                     {
-                        childNode.mode = mode;
+                        childNode.Mode = mode;
                         updateModeOfChildNode(childNode);
                     }
                 }
             }
-
-            void updateParentLeaf(int parentId)
-            {
-                var parentNode = sampleList.Where((row) => row.Id == parentId).FirstOrDefault();
-                if (parentNode != null)
-                {
-                    parentNode.Leaf = true;
-                }
-            }
-
             var returnString = "finished";
             return returnString;
+        }
+
+        public void updateParentLeaf(int parentId)
+        {
+            var cacheKey = "ProjectTreeStore";
+            var sampleList = _cache.Get(cacheKey) as List<TreeList>;
+            if (sampleList == null)
+                sampleList = new List<TreeList>();
+
+            var parentNode = sampleList.Where((row) => row.Id == parentId).FirstOrDefault();
+            if (parentNode != null)
+            {
+                parentNode.Leaf = true;
+            }
+        }
+
+        [HttpPost("setExpanded")]
+        public string SetExpanded(Dictionary<string,Object> data)
+        {
+            var cacheKey = "ProjectTreeStore";
+            var sampleList = _cache.Get(cacheKey) as List<TreeList>;
+            if (sampleList == null)
+                return "Failed";
+
+            var updateNode = sampleList.Where((row) => row.Id == int.Parse(data["id"].ToString())).FirstOrDefault();
+
+            if (updateNode == null)
+                return "Failed";
+
+            updateNode.Expanded = bool.Parse(data["expanded"].ToString());
+
+            return "Success";
         }
     }
 }

@@ -42,6 +42,8 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController', {
      */
     onTreeRefresh: function (btn) {
         var store = this.getViewModel().get('rightstore');
+        var treeModel = this.getView().getSelectionModel();
+        treeModel.clearSelections();
         store.reload({
             // callback: function (treeModels, options) {
             //     //store.getRoot().expandChildren(true);
@@ -58,7 +60,9 @@ Ext.define('EunjiClassic.view.second.righttree.RightTreeController', {
      * @param {*} eOpts 이벤트 명
      */
     onDropRight : function(node, data, overModel, dropPosition, eOpts){
-        this.getView().up('project-main').getController().dragDropEvent(data,"right");
+        var after = overModel.data.mode;
+        var before = data.records[0].data.mode;
+        this.getView().up('project-main').getController().dragDropEvent(data,before,after);
     },
 
     onDropDepthCheck: function (node, data, overModel, dropPosition, dropHandlers, eOpts) {

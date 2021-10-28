@@ -51,34 +51,66 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
         
     },
 
-    dragDropEvent: function(data,mode){
+    dragDropEvent: function(data,before,after){
         var vm = this.getViewModel();
         var nodeList = [];
-        
+        var leftstore = vm.get('leftstore');
+        var rightstore = vm.get('rightstore');
+        //var ids = storeRecords.map(row => row.id); // id만 추출
+
         Ext.each(data.records, function(record){
-            var json = new Object;
-            json.id = record.get("id");
-            json.parentId = record.get("parentId");
+            var json        = new Object;
+            json.id         = record.get("id");
+            json.parentId   = record.get("parentId");
+            
             nodeList.push(json);
         });
+        console.log(after);
         Ext.Ajax.request({
             url:"https://localhost:5001/projectTreeList/moveUpdateTreeNode",
             method: 'POST',
-            params:{
-                mode: mode
+            jsonData: {
+                nodeList : Ext.encode(nodeList),
+                changeMode : after
             },
-            jsonData: Ext.encode(nodeList),
             success: function(oper, request){
-                if(mode=='left')
-                    vm.get('leftstore').reload();
-                else if(mode=='right')
-                    vm.get('rightstore').reload();
+                leftstore.reload();
+                rightstore.reload();                
             },
             failure: function(result, request){
                 console.log("실패");
             }
         });
+
+        if(before == after){
+            if(before == "left"){
+                leftstore.sync();
+                rightstore.reload();  
+            } else{
+                rightstore.sync();
+                leftstore.reload();
+            }
+        }else{
+            if(after == "left"){
+                leftstore.sync();
+                rightstore.reload();
+            }else{
+                rightstore.sync();
+                leftstore.reload();
+            }
+        }
+/*
+        var parentChildren = data.records[0].parentNode.childNodes;
+        var dropFirstRecord = data.records[0].id;
+        var parentChildrenIds = parentChildren.map(row => row.id);
+
+        var firstRecordIndex = parentChildrenIds.indexOf(dropFirstRecord);
+        var startIndex = parentChildren[firstRecordIndex-1].data.index;
+        */
+
     },
+
+    
 
     dropDepthCheck: function(data,dropHandlers){ // depth가 다를 경우 이동 불가 처리 코드
         var _records = data.records;

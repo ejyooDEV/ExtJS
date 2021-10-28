@@ -11,14 +11,14 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
         var treeModel = view.getSelectionModel();
 
         var selectRecord = treeModel.getSelection()[0];
+        var setChildIndex;
         selectRecord ? selectRecord = selectRecord : selectRecord = view.getRootNode();
-
         var model = new EunjiClassic.model.TreeStoreList({
             name: 'leftTree',
             leaf: true,
             mode: 'left'
         });
-
+        
         selectRecord.appendChild(model);
 
         if (selectRecord.id == "root") {
@@ -75,6 +75,8 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
      */
     onTreeRefresh: function (btn) {
         var store = this.getViewModel().get('leftstore');
+        var treeModel = this.getView().getSelectionModel();
+        treeModel.clearSelections();
         store.reload({
             // callback: function (treeModels, options) {
             //     //store.getRoot().expandChildren(false);
@@ -91,7 +93,9 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
      * @param {*} eOpts 이벤트 명
      */
     onDropLeft: function(node, data, overModel, dropPosition, eOpts){
-        this.getView().up('project-main').getController().dragDropEvent(data,"left");
+        var after = overModel.data.mode;
+        var before = data.records[0].data.mode;
+        this.getView().up('project-main').getController().dragDropEvent(data,before,after);
     },
 
     onDropDepthCheck: function (node, data, overModel, dropPosition, dropHandlers, eOpts) {

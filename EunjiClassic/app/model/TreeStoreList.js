@@ -1,7 +1,7 @@
 Ext.define('EunjiClassic.model.TreeStoreList', {
     extend: 'EunjiClassic.model.Base',
     
-    fields:['name',{name:'leaf',value:'true'},'parentId'],
+    fields:['name', {name:'leaf',value:'true'}, 'parentId', 'index'],
     clientIdProperty: 'clientId',
     idProperty: 'id',
     identifier: 'negative',

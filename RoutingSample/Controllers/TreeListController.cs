@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using RoutingSample.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Docs.Samples;
 using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RoutingSample.Controllers
 {
@@ -15,7 +15,6 @@ namespace RoutingSample.Controllers
     public class TreeListController : ControllerBase
     {
         private IMemoryCache _cache;
-        private int count;
 
         public TreeListController(IMemoryCache memoryCache)
         {
@@ -66,51 +65,57 @@ namespace RoutingSample.Controllers
                                                             .ToList();
 
             var root = statusTreeList   .Where((row) => row.ParentId.ToString() == "0")
-                                        .OrderBy((row) => row.Id)
+                                        .OrderBy((row) => row.Index)
                                         .ToList();
             
             return root;
         }
 
         [HttpPost("updateTreeNode")]
-        public TreeList ModifyTreeNode(Dictionary<String, Object> data, string mode)
+        public TreeList ModifyTreeNode(object data)
         {
             var cacheKey = "ProjectTreeStore";
             var sampleList = _cache.Get(cacheKey) as List<TreeList>;
             if (sampleList == null)
                 sampleList = new List<TreeList>();
+            var modifyObject = new TreeList();
+            // dataType 확인 List인지 Dictionary<String, Object> 인지
+            var obj = JsonConvert.DeserializeObject(data.ToString());
+            var temp = obj.GetType();
+            //JArray jo = JArray.Parse(data.ToString());
 
-            string dataId = data["id"].ToString();
-            var modifyObject = sampleList.Where((row) => row.Id.ToString() == dataId).FirstOrDefault();
-
-            if (data != null && modifyObject != null)
+            if (temp == typeof(JArray))
             {
-                foreach (var key in data.Keys)
+                var datas = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data.ToString());
+                foreach(var record in datas)
                 {
-                    var value = data[key];
-                    var properties = typeof(TreeList).GetProperties();
-                    var property = properties.FirstOrDefault(row => row.Name.ToLower() == key.ToLower());
-                    var propertyType = property.PropertyType;
-                    if (propertyType == typeof(string))
+                    modifyObject = sampleList.Where((row) => row.Id.ToString() == record["id"].ToString()).FirstOrDefault();
+                    if(modifyObject != null)
                     {
-                        property.SetValue(modifyObject, value.ToString());
-                    }
-                    else if (propertyType == typeof(int))
-                    {
-                        int.TryParse(value.ToString(), out var value2);
-                        property.SetValue(modifyObject, value2);
-                    }
-                    else if (propertyType == typeof(bool))
-                    {
-                        property.SetValue(modifyObject, bool.Parse(value.ToString()));
+                        updateParentNodeIndex(record, modifyObject);
                     }
                 }
             }
+            else if(temp == typeof(JObject))
+            {
+                var record = JsonConvert.DeserializeObject<Dictionary<string, object>>(data.ToString());
+                string dataId = record["id"].ToString();
+                modifyObject = sampleList.Where((row) => row.Id.ToString() == dataId).FirstOrDefault();
+
+                if (modifyObject != null)
+                {
+                    updateParentNodeIndex(record, modifyObject);
+                }
+            }
+
+            
+
+
             return modifyObject;
         }
 
-        [HttpPost("destroyTreeNode")]
-        public String RemoveTreeNode(Dictionary<String, Object> data)
+            [HttpPost("destroyTreeNode")]
+        public String RemoveTreeNode(object data)
         {
             // 캐쉬 가져와서
             var cacheKey = "ProjectTreeStore";
@@ -118,7 +123,45 @@ namespace RoutingSample.Controllers
             if (sampleList == null)
                 sampleList = new List<TreeList>();
 
-            string _id = data["id"].ToString();
+            var removeObject = new TreeList();
+
+            var obj = JsonConvert.DeserializeObject(data.ToString());
+            var temp = obj.GetType();
+            //JArray jo = JArray.Parse(data.ToString());
+
+            if (temp == typeof(JArray))
+            {
+                var datas = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(data.ToString());
+                foreach (var record in datas)
+                {
+                    removeObject = sampleList.Where((row) => row.Id.ToString() == record["id"].ToString()).FirstOrDefault();
+                    
+                    if (removeObject != null)
+                    {
+                        removeObject.IsDelete = true;
+                        var parentId = removeObject.ParentId;
+                        updateParentLeaf(parentId);
+                        updateParentNodeIndex(record, removeObject);
+                    }
+                }
+            }
+            else if(temp == typeof(JObject))
+            {
+                var record = JsonConvert.DeserializeObject<Dictionary<string, object>>(data.ToString());
+                string dataId = record["id"].ToString();
+                removeObject = sampleList.Where((row) => row.Id.ToString() == dataId).FirstOrDefault();
+
+                if (removeObject != null)
+                {
+                    removeObject.IsDelete = true;
+                    var parentId = removeObject.ParentId;
+                    updateParentLeaf(parentId);
+                    updateParentNodeIndex(record, removeObject);
+                }
+            }
+
+            /*
+                string _id = data["id"].ToString();
             var removeObject = sampleList.Where((row) => row.Id.ToString() == _id).FirstOrDefault();
             removeObject.IsDelete = true;
             //var removeObjectCnt = sampleList.RemoveAll((row) => row.Id.ToString() == _id);
@@ -127,39 +170,53 @@ namespace RoutingSample.Controllers
 
             var parentId = removeObject.ParentId;
             updateParentLeaf(parentId);
-
+            */
             return "Success";
         }
 
+
         [HttpPost("moveUpdateTreeNode")]
-        public string moveUpdateTreeNode(List<Dictionary<string,object>> datas, string mode)
+        public string moveUpdateTreeNode(Dictionary<string,object> datas)
         {
             var cacheKey    = "ProjectTreeStore";
             var sampleList  = _cache.Get(cacheKey) as List<TreeList>;
             if (sampleList == null)
                 sampleList = new List<TreeList>();
 
+            var nodes = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(datas["nodeList"].ToString());
+            //var ids = datas["ids"];
+
             if(datas != null)
             {
-                foreach (var data in datas)
+                foreach (var node in nodes)
                 {
-                    string dataId = data["id"].ToString();
+                    string dataId = node["id"].ToString();
                     var dragNode = sampleList.Where((row) => row.Id.ToString() == dataId).FirstOrDefault();
 
-                    var parentId = dragNode.ParentId;
-                    updateParentLeaf(parentId);
+                    var beforeParentId  = dragNode.ParentId;
+                    var afterParentId = node["parentId"].ToString();
+                    afterParentId = (afterParentId == "root") ? "0" : afterParentId;
+                    dragNode.ParentId = int.Parse(afterParentId);
+                    dragNode.Mode = datas["changeMode"].ToString(); // 상태 변경
 
-                    if (data["parentId"].ToString().Equals("root")) // root이면 ParentId 0 으로 변경
-                        dragNode.ParentId = 0;
-                    else
-                        dragNode.ParentId = int.Parse(data["parentId"].ToString()); // 변경하려던 node로 변경
-
-                    dragNode.Mode = mode; // 상태 변경
-
-                    updateModeOfChildNode(dragNode);
+                    updateModeOfChildNode(dragNode); // 변경 Node의 ChildrenNode Mode를 변경
+                    updateParentChild(dragNode.Id, beforeParentId); // 변경 Node의 전 부모에서 자식 정리
+                    updateParentLeaf(beforeParentId); // 변경 Node의 전 부모의 Leaf 검사
+                    //updateParentNodeIndex(beforeParentId, int.Parse(afterParentId)); // 변경 Node의 전, 후 부모의 Index 변경
                 }
             }
 
+            // 부모 노드에 존재하는 이동한 Child 제거
+            void updateParentChild(int dragNodeId, int BeforeParent)
+            {
+                if (BeforeParent == 0)
+                    return;
+                var parentNode = sampleList.Where((row) => row.Id == BeforeParent).FirstOrDefault();
+                int removeChildIndex = parentNode.Children.FindIndex((row) => row.Id == dragNodeId);
+                parentNode.Children.RemoveAt(removeChildIndex);
+            }
+
+            // childNode의 상태값 변경
             void updateModeOfChildNode(TreeList parentNode)
             {
                 var childrenNode = sampleList.Where((row) => row.ParentId == parentNode.Id).ToList();
@@ -167,7 +224,7 @@ namespace RoutingSample.Controllers
                 {
                     foreach (var childNode in childrenNode)
                     {
-                        childNode.Mode = mode;
+                        childNode.Mode = datas["changeMode"].ToString();
                         updateModeOfChildNode(childNode);
                     }
                 }
@@ -176,16 +233,19 @@ namespace RoutingSample.Controllers
             return returnString;
         }
 
+        // parnetNode에 Children 이 없을 경우 Leaf 설정
         public void updateParentLeaf(int parentId)
         {
+            if (parentId == 0)
+                return;
+
             var cacheKey = "ProjectTreeStore";
             var sampleList = _cache.Get(cacheKey) as List<TreeList>;
-            if (sampleList == null)
-                sampleList = new List<TreeList>();
 
-            var parentNode = sampleList.Where((row) => row.Id == parentId).FirstOrDefault();
-            if (parentNode != null)
+            var childNode = sampleList.Where((row) => row.ParentId == parentId && row.IsDelete == false).ToList();
+            if (childNode.Count < 1)
             {
+                var parentNode = sampleList.Where((row) => row.Id == parentId).FirstOrDefault();
                 parentNode.Leaf = true;
             }
         }
@@ -206,6 +266,32 @@ namespace RoutingSample.Controllers
             updateNode.Expanded = bool.Parse(data["expanded"].ToString());
 
             return "Success";
+        }
+
+        // 부모 노드의 인덱스 정리
+        void updateParentNodeIndex(Dictionary<string, object> record, TreeList modifyObject)
+        {
+            foreach (var key in record.Keys)
+            {
+                var value = record[key];
+                var properties = typeof(TreeList).GetProperties();
+                var property = properties.FirstOrDefault(row => row.Name.ToLower() == key.ToLower());
+                if (property == null) continue;
+                var propertyType = property.PropertyType;
+                if (propertyType == typeof(string))
+                {
+                    property.SetValue(modifyObject, value.ToString());
+                }
+                else if (propertyType == typeof(int))
+                {
+                    int.TryParse(value.ToString(), out var value2);
+                    property.SetValue(modifyObject, value2);
+                }
+                else if (propertyType == typeof(bool))
+                {
+                    property.SetValue(modifyObject, bool.Parse(value.ToString()));
+                }
+            }
         }
     }
 }

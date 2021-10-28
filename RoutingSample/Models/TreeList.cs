@@ -32,6 +32,6 @@ namespace RoutingSample.Models
 
         public bool Expanded { get; set; }
 
-        public string Index { get; set; } = "";
+        public int Index { get; set; }
     }
 }

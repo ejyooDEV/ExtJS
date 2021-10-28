@@ -71,7 +71,7 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
             method: 'POST',
             jsonData: {
                 nodeList : Ext.encode(nodeList),
-                changeMode : after
+                changeMode : after.mode
             },
             success: function(oper, request){
                 leftstore.reload();
@@ -82,7 +82,7 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
             }
         });
 
-        if(before == after){
+        if(before.mode == after.mode){
             if(before == "left"){
                 leftstore.sync();
                 rightstore.reload();  
@@ -91,7 +91,7 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
                 leftstore.reload();
             }
         }else{
-            if(after == "left"){
+            if(after.mode == "left"){
                 leftstore.sync();
                 rightstore.reload();
             }else{
@@ -116,10 +116,12 @@ Ext.define('EunjiClassic.view.second.ProjectMainController', {
         var _records = data.records;
         var flag = false;
 
-        for (var i = 0; i < _records.length - 1; i++) {
-            for (var j = i + 1; j < _records.length; j++) {
-                if (_records[i].data.depth != _records[j].data.depth) {
-                    flag = true;
+        if(data.records[0].data.id != "root"){
+            for (var i = 0; i < _records.length - 1; i++) {
+                for (var j = i + 1; j < _records.length; j++) {
+                    if (_records[i].data.depth != _records[j].data.depth) {
+                        flag = true;
+                    }
                 }
             }
         }

@@ -180,7 +180,6 @@ namespace RoutingSample.Controllers
                     updateModeOfChildNode(node); // 변경 Node의 ChildrenNode Mode를 변경
                     updateParentChild(node.Id, beforeParentId); // 변경 Node의 전 부모에서 자식 정리
                     updateParentLeaf(beforeParentId); // 변경 Node의 전 부모의 Leaf 검사
-                    //updateParentNodeIndex(beforeParentId, int.Parse(afterParentId)); // 변경 Node의 전, 후 부모의 Index 변경
                 }
             }
 

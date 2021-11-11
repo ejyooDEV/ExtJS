@@ -1,7 +1,12 @@
 /**
- * This view is an example list of people.
+ * 작업 필요 사항
+ * 1. actioncolumn 삭제 아이콘을 만들어서 사용자 권한에 따라 삭제 아이콘 활성화 비활성화 처리
+ * 2. 프로젝트 이동 아이콘을 만들어서 getClass를 사용하여 아이콘 변경 처리 수행
+ * 3. 그리드 셀 에디팅 코드 적용
+ * 4. 사용하지 않는 컬럼 hideable로 숨김처리
+ * 5. 코드 첫 로드 시 비활성화 할 컬럼 hidden처리(bind)
  */
-Ext.define('EunjiClassic.view.grid.Grid', {
+Ext.define('EunjiClassic.view.grid.ProjectGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'mainprojectlistgrid',
 
@@ -24,11 +29,13 @@ Ext.define('EunjiClassic.view.grid.Grid', {
         {
             xtype: 'actioncolumn',
             width: 25,
-            items: [{
-                iconCls: 'fas fa-info-circle',
-                tooltip: 'information',
-                handler: 'onInformationIconClick'
-            }]
+            iconCls: 'fas fa-info-circle',
+            tooltip: 'information',
+            handler: 'onInformationIconClick',
+            
+            bind:{
+                disabled: '{cellDisabled}'
+            }
         },
         {
             text: 'Title', align: 'left', flex: 2, dataIndex: 'title',
@@ -70,7 +77,7 @@ Ext.define('EunjiClassic.view.grid.Grid', {
                 completeOnEnter: false
             }
         },
-        { text: 'MenuTemplate', style: 'text-align:center', flex: 1, dataIndex: 'menuTemplate', hidden: true },
+        { text: 'MenuTemplate', style: 'text-align:center', flex: 1, dataIndex: 'menuTemplate', hidden: true},
         { text: 'Manager', style: 'text-align:center', flex: 1, dataIndex: 'manager', hidden: true },
         { text: 'Issue', style: 'text-align:center', flex: 1, dataIndex: 'issue', hidden: true },
     ],

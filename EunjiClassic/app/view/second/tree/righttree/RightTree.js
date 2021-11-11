@@ -1,7 +1,7 @@
-Ext.define("EunjiClassic.view.second.righttree.RightTree",{
+Ext.define("EunjiClassic.view.second.tree.righttree.RightTree",{
     extend:'Ext.tree.Panel',
-    alias:'widget.righttree',
-    controller:'righttree',
+    alias:'widget.tree-righttree',
+    controller:'tree-righttree',
     title:'트리2',
     rootVisible: false,
     displayField: 'name',

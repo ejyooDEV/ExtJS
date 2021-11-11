@@ -1,6 +1,6 @@
-Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
+Ext.define('EunjiClassic.view.second.tree.LeftTreeController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.lefttree',
+    alias: 'controller.tree-lefttree',
     //onMenuClick:function(treeModel, record, index, eOpts){},
 
     /**
@@ -95,22 +95,22 @@ Ext.define('EunjiClassic.view.second.lefttree.LeftTreeController', {
     onDropLeft: function(node, data, overModel, dropPosition, eOpts){
         var after = overModel.data;
         var before = data.records[0].data;
-        this.getView().up('project-main').getController().dragDropEvent(data,before,after);
+        this.getView().up('treemain').getController().dragDropEvent(data,before,after);
     },
 
     onDropDepthCheck: function (node, data, overModel, dropPosition, dropHandlers, eOpts) {
-        this.getView().up('project-main').getController().dropDepthCheck(data,dropHandlers);
+        this.getView().up('treemain').getController().dropDepthCheck(data,dropHandlers);
     },
 
     onExpanded: function ( node, index, item, eOpts ) {
         var id = node.data.id;
         var expanded = true;
-        this.getView().up('project-main').getController().setExpanded(id,expanded);
+        this.getView().up('treemain').getController().setExpanded(id,expanded);
     },
 
     onCollapse: function ( node, index, item, eOpts ) {
         var id = node.data.id;
         var expanded = false;
-        this.getView().up('project-main').getController().setExpanded(id,expanded);
+        this.getView().up('treemain').getController().setExpanded(id,expanded);
     }
 });

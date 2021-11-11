@@ -1,4 +1,4 @@
-Ext.define('EunjiClassic.view.grid.GridController',{
+Ext.define('EunjiClassic.view.grid.ProjectGridController',{
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.projectgrid',

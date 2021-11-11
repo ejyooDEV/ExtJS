@@ -7,32 +7,31 @@ Ext.define('EunjiClassic.view.main.Content', {
         {
             xtype: 'toolbar',
             region: 'north',
-            flex:0.4,
-            style:{
-                padding: '0 0 0 0',
-                backgroundColor:'#f6f6f6'
-            },
+            cls: 'ejyoo-toolbar-padding',
             items: [
                 {
-
                     xtype: 'segmentedbutton',
                     listeners: {
                         toggle: 'onButtonChange',
-                        afterrender: 'onButtonAfterrender'
                     },
+                    cls:'ejyoo-segmentic-button-basic ejyoo-segmentic-button-over .ejyoo-segmentic-button-press',
                     items: [
                         {
-                            text: 'Ongoing',
+                            html: '<b>Ongoing</b>',
+                            value: 'Ongoing',
                             pressed: true
                         },
                         {
-                            text: 'Planning'
+                            html: '<b>Planning</b>',
+                            value: 'Planning'
                         },
                         {
-                            text: 'Postponed'
+                            html: '<b>Postponed</b>',
+                            value: 'Postponed'
                         },
                         {
-                            text: 'Finished'
+                            html: '<b>Finished</b>',
+                            value: 'Finished'
                         }
                     ]
                 },
@@ -41,7 +40,8 @@ Ext.define('EunjiClassic.view.main.Content', {
             xtype: 'mainprojectlistgrid',
             region: 'center',
             border: true,
-            flex: 6,
+            width:'30%',
+            height:'70%',
             listeners: {
                 // rowdbclick: 'onItemdbClick',
                 // edit: 'onEditRow',
@@ -52,25 +52,25 @@ Ext.define('EunjiClassic.view.main.Content', {
             region: 'east',
             border: true,
             title: 'To-do List',
-            flex: 2,
+            width:'30%'
         }, {
             xtype: 'panel',
             region: 'south',
             border: true,
             layout: 'border',
-            flex: 2,
+            height:'30%',
             items: [
                 {
                     xtype: 'panel',
                     region: 'west',
                     border: true,
-                    flex: 6,
+                    width:'70%',
                     title: 'board'
                 }, {
                     xtype: 'panel',
                     region: 'center',
                     border: true,
-                    flex: 2,
+                    width:'30%',
                     title: 'Notice',
                 }
             ]

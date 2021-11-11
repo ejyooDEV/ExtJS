@@ -35,7 +35,7 @@
     $ui-tab-icon-width: 24px,
     $ui-tab-icon-height: 24px,
     $ui-tab-icon-spacing: 5px,
-    $ui-bar-background-color: #404040,
+    $ui-bar-background-color: rgb(245, 245, 245),
     $ui-bar-background-gradient: 'none',
     $ui-bar-padding: 0,
     $ui-strip-height: 0
@@ -84,4 +84,52 @@
 .x-panel-header-title-navigation > .x-title-text-navigation:after {
     top: 30px;
     right: -24px;
+}
+
+//custom css////////////////
+// .x-toolbar-default {
+//     padding: 0px; // toolbar 여백 제거
+// }
+
+.styled-textfield{
+    border-radius: 7px; // field 모서리 설정
+    background-color: #f5f5f5;
+}
+
+.button-text .x-btn-inner-default-toolbar-small {
+    color: white //!important;
+}
+
+.ejyoo-maintoolbar-background-color{
+    background-color:#353535;
+}
+
+.ejyoo-toolbar-padding{
+    padding: 0 0 0 0;
+    background-color:#fdfdfd;
+}
+
+.ejyoo-segmentic-button-basic .x-btn-default-toolbar-small{
+    background-color: #fdfdfd;
+}
+
+.ejyoo-segmentic-button-over .x-btn-over.x-btn-default-toolbar-small{
+    border-color:#d2d2d2;
+    background-color:#e2e2e2;
+}
+
+.ejyoo-segmentic-button-press .x-btn.x-btn-pressed.x-btn-default-toolbar-small{
+    border-color:#d2d2d2;
+    background-color:#e2e2e2;
+}
+
+.ejyoo-layout-border-header-color .x-panel-header-default{
+    background-color:#fdfdfd;
+}
+
+.ejyoo-login-page-background .x-autocontainer-innerCt{
+    background-color:rgba(0,0,0,0.1);
+}
+.ejyoo-login-page-background-all .x-autocontainer-innerCt{
+    background-color:#e9f3ff;
 }

@@ -1,30 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ejyoo\\Desktop\\RoutingSample\\RoutingSample.csproj": {}
+    "/Users/yooeunji/Desktop/GIT_ejyooDEV_ExtJS/RoutingSample/RoutingSample.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ejyoo\\Desktop\\RoutingSample\\RoutingSample.csproj": {
+    "/Users/yooeunji/Desktop/GIT_ejyooDEV_ExtJS/RoutingSample/RoutingSample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ejyoo\\Desktop\\RoutingSample\\RoutingSample.csproj",
+        "projectUniqueName": "/Users/yooeunji/Desktop/GIT_ejyooDEV_ExtJS/RoutingSample/RoutingSample.csproj",
         "projectName": "RoutingSample",
-        "projectPath": "C:\\Users\\ejyoo\\Desktop\\RoutingSample\\RoutingSample.csproj",
-        "packagesPath": "C:\\Users\\ejyoo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ejyoo\\Desktop\\RoutingSample\\obj\\",
+        "projectPath": "/Users/yooeunji/Desktop/GIT_ejyooDEV_ExtJS/RoutingSample/RoutingSample.csproj",
+        "packagesPath": "/Users/yooeunji/.nuget/packages/",
+        "outputPath": "/Users/yooeunji/Desktop/GIT_ejyooDEV_ExtJS/RoutingSample/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ejyoo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/yooeunji/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }

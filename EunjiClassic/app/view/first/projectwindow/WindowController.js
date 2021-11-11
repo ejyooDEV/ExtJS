@@ -16,7 +16,7 @@ Ext.define('EunjiClassic.view.window.WindowController', {
             var record = btn.up('window').record;
             record.set(form.getValues());
 
-            store.save({
+            store.sync({
                 success: function (response) {
                     Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");
                     store.reload();
@@ -29,7 +29,7 @@ Ext.define('EunjiClassic.view.window.WindowController', {
         } else if (windowFlag == 'create') { // 생성
             store.add(form.getValues());
 
-            store.save({
+            store.sync({
                 //params:formValues, // form Data를 직접 params에 넣어줄 수 있음 : QueryString
                 success: function (response) {
                     Ext.Msg.alert('Success', "입력한 데이터가 저장되었습니다.");

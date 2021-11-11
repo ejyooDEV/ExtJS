@@ -31,8 +31,11 @@ Ext.define('EunjiClassic.view.window.Window', {
                 margin: '12 50 12 50',
                 anchor: '100%',
                 allowBlank:false,
-                msgTarget: 'under',
-                blankText: 'This field is required'
+                msgTarget: 'under', // 메시지 위치
+                blankText: 'This field is required' // allowBlank 지키지 않았을 때.
+                //invalidText: '"{0}" bad. "{1}" good.' // {0} : 작성 문장, {1} : 필요한 형식 표시
+                //invalidCls: cssID // x-form-invalid-field CSS class added to its HTML element.
+                //vtype: typename // Ext.form.field.VTypes 사용하여 유효성 검증
             },
             items: [
                 {

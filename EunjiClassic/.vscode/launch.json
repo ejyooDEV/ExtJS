@@ -12,5 +12,5 @@
             "webRoot": "${workspaceFolder}",
             "runtimeArgs": ["--disable-web-security"]
         }
-    ]
+    ]//launch.json처리를 하거나 아니면 크롬-설정에 직접 설정하거나. 추가로 server.json도 추가해야 한다.
 }

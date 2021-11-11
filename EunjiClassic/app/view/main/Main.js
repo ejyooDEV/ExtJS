@@ -3,12 +3,6 @@ Ext.define('EunjiClassic.view.main.Main', {
     xtype: 'app-main',
     layout: 'border',
 
-    requires: [
-        'EunjiClassic.view.main.MainController',
-        'EunjiClassic.view.main.MainModel',
-        'EunjiClassic.view.grid.Grid'
-    ],
-
     controller: 'main',
     plugins: 'viewport',
     viewModel: 'main',
@@ -17,53 +11,91 @@ Ext.define('EunjiClassic.view.main.Main', {
         {
             region: 'north',
             xtype: 'toolbar',
-            style:{
-                backgroundColor:'#515f75'
-            },
+            cls: 'ejyoo-maintoolbar-background-color',
             items: [
                 {
                     xtype:'button',
-                    iconCls:'fas fa-home',
-                    text:'홈으로',
-                    handler:'onPageChangeHome'
-                },
-                {
-
-                    xtype: 'image',
-                    src: 'img/top_logo_debug.png',
-                    mode: 'image'
+                    //id: 'changeHome',
+                    handler:'onPageChangeHome',
+                    html:'<i class="fas fa-home fa-2x" style="cursor:pointer"></i>',
+                    baseCls:'',
+                    cls: 'button-text',
+                    tooltip: 'Go to home.',
+                    //listeners:{
+                        //afterrender: 'onQuickTipManager',
+                        //destroy: 'onDestoryQuickTipManager',
+                        //click: 'onPageChangeHome',
+                    //}
                 },
                 '->',
                 {
                     xtype: 'textfield',
                     name: 'field1',
-                    emptyText: 'enter search term'
+                    emptyText: 'enter search term',
+                    cls: 'styled-textfield',
+                    inputWrapCls: '', // 입력필드 길이 최대치
+                    triggerWrapCls: '', // 검색 입력 필드 테두리 제거
+                    fieldStyle: 'background:none' // 모서리 설정
                 },
                 {
                     xtype: 'button',
-                    iconCls: 'fas fa-search'
+                    html:'<i class="fas fa-search" style="color:white"></i>',
+                    baseCls:'',
+                    cls: 'button-text',
                 },
                 {
                     xtype: 'button',
-                    iconCls: 'fas fa-filter'
+                    html:'<i class="fas fa-filter" style="color:white"></i>',
+                    baseCls:'',
                 },
                 '-',
                 {
-                    xtype: 'button',
-                    iconCls: 'fas fa-user',
-                    handler: 'onClickButton',
-                    html: '&nbsp;&nbsp;유은지'
+                    
+                    html:'<i class="fas fa-user" style="color:white;cursor:pointer">&nbsp;&nbsp;유은지</i>&nbsp;&nbsp;<i class="fas fa-angle-down" style="color:white;cursor:pointer"></i>',
+                    baseCls:'',
+                    menu: {
+                        xtype: 'menu',
+                        plain: true,
+                        items: {
+                            xtype: 'buttongroup',
+                            title: 'User options',
+                            columns: 2,
+                            defaults: {
+                                xtype: 'button',
+                                scale: 'large',
+                                iconAlign: 'left',
+                                handler: 'onButtonClick'
+                            },
+                            items: [{
+                                text: 'User<br/>manager',
+                                iconCls: 'x-fa fa-user-md',
+                                displayText: 'User manager',
+                                height: '4em'
+                            }, {
+                                iconCls: 'x-fa fa-user-plus',
+                                tooltip: 'Add user',
+                                width: 40,
+                                displayText: 'Add user',
+                                height: '4em'
+                            }, {
+                                colspan: 2,
+                                width: '100%',
+                                text: 'Logout',
+                                scale: 'small'
+                            }, {
+                                src: '../../resourceimage/image/cord/nonuser.png',
+                                colspan: 2,
+                                width: '100%',
+                                text: 'Who is online?',
+                                scale: 'small'
+                            }]
+                        }
+                    }
                 },
-                // {
-                //     xtype: 'button',
-                //     iconCls: 'fas fa-user',
-                //     text: '트리 테스트',
-                //     handler: 'ExtWidgetTest'
-                // },
             ]
         }, {
             region: 'center',
             xtype: 'content'
         }
-    ]
+    ],
 });

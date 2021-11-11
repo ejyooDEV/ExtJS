@@ -61,7 +61,7 @@ namespace RoutingSample.Controllers
         }
 
         [HttpPost("updateTreeNode")]
-        public string UpdateTreeNode(object jsonData)
+        public string UpdateTreeNode(object jsonData) //store.sync 사용 시 jsonData가 어떤 데이타가 올지 모르기 때문에 Object로 받음
         {
             var cacheKey    = "ProjectTreeStore";
             var dbRecords   = _cache.Get(cacheKey) as List<TreeList>;
